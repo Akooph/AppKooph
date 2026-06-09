@@ -1,0 +1,544 @@
+{
+  "meta": {
+    "date_generation": "2026-06-09T17:32:53.135602Z",
+    "nb_affaires_total": 383,
+    "nb_affaires_definitif": 309,
+    "nb_politiciens": 333,
+    "nb_partis": 39,
+    "annee_min": 1965,
+    "annee_max": 2026
+  },
+  "chronologie": {
+    "1965": {
+      "Comité faire front": 2
+    },
+    "1967": {
+      "Comité faire front": 2,
+      "républicains indépendants": 1
+    },
+    "1976": {
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "1977": {
+      "Les Républicains": 1
+    },
+    "1978": {
+      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
+      "Parti communiste breton": 1
+    },
+    "1980": {
+      "Rassemblement national": 1
+    },
+    "1981": {
+      "Parti radical de gauche": 1
+    },
+    "1983": {
+      "Union pour la démocratie française": 1
+    },
+    "1986": {
+      "Rassemblement national": 1
+    },
+    "1988": {
+      "Rassemblement national": 1
+    },
+    "1991": {
+      "Les Républicains": 1,
+      "Rassemblement national": 1
+    },
+    "1992": {
+      "Solidarité et progrès": 1,
+      "Parti républicain": 1
+    },
+    "1993": {
+      "Rassemblement national": 1
+    },
+    "1994": {
+      "Les Républicains": 1
+    },
+    "1995": {
+      "Parti socialiste": 1,
+      "Parti radical de gauche": 1,
+      "Parti républicain": 1,
+      "Union pour la démocratie française": 2
+    },
+    "1996": {
+      "Union pour la démocratie française": 2,
+      "Parti socialiste": 2,
+      "Les Républicains": 2,
+      "Parti radical de gauche": 1,
+      "Parti républicain": 1,
+      "Rassemblement national": 1
+    },
+    "1997": {
+      "Les Républicains": 6,
+      "Parti socialiste": 5,
+      "Union pour la démocratie française": 2,
+      "Parti radical de gauche": 1
+    },
+    "1998": {
+      "Parti socialiste": 1,
+      "Les Républicains": 3,
+      "Mouvement national républicain": 1,
+      "Rassemblement national": 2,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "1999": {
+      "Les Républicains": 5,
+      "républicains indépendants": 1,
+      "Rassemblement national": 1,
+      "Union pour la démocratie française": 1
+    },
+    "2000": {
+      "Mouvement national républicain": 1,
+      "Parti socialiste": 1,
+      "Rassemblement national": 1,
+      "Union pour la démocratie française": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2001": {
+      "Les Républicains": 1,
+      "Rassemblement national": 3,
+      "Parti socialiste": 2,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2002": {
+      "Les Républicains": 3,
+      "Rassemblement national": 1,
+      "Union pour la démocratie française": 2,
+      "Parti socialiste": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2003": {
+      "Mouvement national républicain": 1,
+      "Parti radical de gauche": 1,
+      "Les Républicains": 4,
+      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2004": {
+      "Les Républicains": 5,
+      "Union pour la démocratie française": 2
+    },
+    "2005": {
+      "Les Républicains": 4,
+      "Solidarité et progrès": 1,
+      "Rassemblement national": 1,
+      "Union pour la démocratie française": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2006": {
+      "Union pour la démocratie française": 2,
+      "Parti socialiste": 2,
+      "Les Républicains": 1,
+      "Mouvement national républicain": 1,
+      "Mouvement pour la France": 1,
+      "Rassemblement national": 1
+    },
+    "2007": {
+      "Parti socialiste": 2,
+      "Les Républicains": 1
+    },
+    "2008": {
+      "Mouvement national républicain": 1,
+      "Les Républicains": 2,
+      "Union pour la démocratie française": 1,
+      "Rassemblement pour la France et l'indépendance de l'Europe": 1,
+      "Rassemblement national": 1,
+      "Parti socialiste": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1
+    },
+    "2009": {
+      "Les Républicains": 6,
+      "Rassemblement pour la France et l'indépendance de l'Europe": 1,
+      "Rassemblement national": 2,
+      "Parti socialiste": 1
+    },
+    "2010": {
+      "Parti socialiste": 1,
+      "Les Républicains": 3,
+      "Comité faire front": 3
+    },
+    "2011": {
+      "Mouvement national républicain": 1,
+      "Parti socialiste": 2,
+      "Les Républicains": 2,
+      "Reconquête": 1,
+      "républicains indépendants": 1
+    },
+    "2012": {
+      "Les Républicains": 4,
+      "Union pour la démocratie française": 1,
+      "Union des démocrates et indépendants": 1,
+      "Rassemblement national": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1,
+      "Parti radical de gauche": 1
+    },
+    "2013": {
+      "Union des démocrates et indépendants": 3,
+      "Les Républicains": 2,
+      "Parti socialiste": 2,
+      "Rassemblement national": 1
+    },
+    "2014": {
+      "Parti socialiste": 2,
+      "Union des démocrates et indépendants": 3,
+      "Les Républicains": 3,
+      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
+      "républicains indépendants": 1
+    },
+    "2015": {
+      "Les Républicains": 7,
+      "Rassemblement national": 1
+    },
+    "2016": {
+      "Front démocrate": 1,
+      "Les Républicains": 2,
+      "Parti radical de gauche": 3,
+      "Parti socialiste": 2,
+      "Renaissance": 1
+    },
+    "2017": {
+      "Front démocrate": 1,
+      "Les Républicains": 6,
+      "Rassemblement national": 2,
+      "Mouvement pour la France": 1,
+      "Parti socialiste": 1
+    },
+    "2018": {
+      "Les Républicains": 2,
+      "Alliance solidaire des Français de l’étranger": 1,
+      "Parti socialiste": 2,
+      "Mouvement démocrate": 1,
+      "Mouvement radical": 1,
+      "Parti national-libéral": 1,
+      "Rassemblement national": 1,
+      "Reconquête": 1,
+      "Union des démocrates et des écologistes": 1
+    },
+    "2019": {
+      "Les Républicains": 3,
+      "Parti socialiste": 5,
+      "Les Écologistes – Europe Écologie Les Verts": 1,
+      "La France insoumise": 3,
+      "Parti radical de gauche": 2,
+      "Renaissance": 1,
+      "Rassemblement national": 1,
+      "La France audacieuse": 1
+    },
+    "2020": {
+      "Les Républicains": 5,
+      "Rassemblement national": 4
+    },
+    "2021": {
+      "Les Républicains": 10,
+      "La France insoumise": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1,
+      "Les Nouveaux Démocrates": 1,
+      "Parti socialiste": 1,
+      "Ligue du Sud": 1,
+      "Union des démocrates et indépendants": 1,
+      "Renaissance": 2,
+      "Parti radical de gauche": 1
+    },
+    "2022": {
+      "Rassemblement national": 1,
+      "La France insoumise": 2,
+      "Mouvement radical": 1,
+      "Les Écologistes – Europe Écologie Les Verts": 1,
+      "Les Républicains": 4,
+      "Parti socialiste": 3,
+      "Renaissance": 1,
+      "Union des démocrates et indépendants": 1,
+      "Reconquête": 2
+    },
+    "2023": {
+      "Les Républicains": 5,
+      "Mouvement démocrate": 3,
+      "Parti socialiste": 3,
+      "La France insoumise": 1,
+      "Rassemblement pour la France": 1,
+      "Horizons": 1,
+      "Rassemblement national": 2,
+      "Front démocrate": 1,
+      "Alliance centriste": 1,
+      "Union pour la démocratie française": 1,
+      "Mouvement radical": 1,
+      "Soyons libres": 1,
+      "Reconquête": 2,
+      "Renaissance": 1
+    },
+    "2024": {
+      "Les Républicains": 11,
+      "Rassemblement national": 1,
+      "Parti socialiste": 5,
+      "Mouvement démocrate": 1,
+      "Horizons": 5,
+      "Rassemblement pour la France": 2,
+      "En commun": 1,
+      "Union des démocrates et indépendants": 1,
+      "Renaissance": 2,
+      "Pour La Réunion": 1,
+      "Cap sur l'avenir": 1,
+      "Reconquête": 3
+    },
+    "2025": {
+      "Les Républicains": 12,
+      "Rassemblement national": 16,
+      "Guadeloupe unie, solidaire et responsable": 1,
+      "Parti socialiste": 3,
+      "Union des droites pour la République": 1,
+      "Renaissance": 3,
+      "Union des démocrates et indépendants": 1,
+      "Horizons": 2,
+      "Ligue du Sud": 1,
+      "La France insoumise": 2,
+      "Parti de la France": 1,
+      "Identité-Libertés": 1,
+      "Reconquête": 3
+    },
+    "2026": {
+      "Union des démocrates et indépendants": 1
+    }
+  },
+  "pca_variables": [],
+  "groupes_parlement": {
+    "Groupe Rassemblement des démocrates, progressistes et indépendants (Sénat)": {
+      "total": 19,
+      "chambre": "Sénat"
+    },
+    "Groupe du Rassemblement Démocratique et Social Européen (Sénat)": {
+      "total": 16,
+      "chambre": "Sénat"
+    },
+    "Groupe Union Centriste (Sénat)": {
+      "total": 59,
+      "chambre": "Sénat"
+    },
+    "Groupe Les Républicains (Sénat)": {
+      "total": 131,
+      "chambre": "Sénat"
+    },
+    "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky (Sénat)": {
+      "total": 18,
+      "chambre": "Sénat"
+    },
+    "Groupe Socialiste, Écologiste et Républicain (Sénat)": {
+      "total": 65,
+      "chambre": "Sénat"
+    },
+    "Groupe Les Indépendants - République et Territoires (Sénat)": {
+      "total": 20,
+      "chambre": "Sénat"
+    },
+    "Groupe Écologiste - Solidarité et Territoires (Sénat)": {
+      "total": 16,
+      "chambre": "Sénat"
+    },
+    "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe (Sénat)": {
+      "total": 4,
+      "chambre": "Sénat"
+    },
+    "Rassemblement National (AN)": {
+      "total": 122,
+      "chambre": "AN"
+    },
+    "La France insoumise - Nouveau Front Populaire (AN)": {
+      "total": 71,
+      "chambre": "AN"
+    },
+    "Non inscrit (AN)": {
+      "total": 10,
+      "chambre": "AN"
+    },
+    "Libertés, Indépendants, Outre-mer et Territoires (AN)": {
+      "total": 23,
+      "chambre": "AN"
+    },
+    "Socialistes et apparentés (AN)": {
+      "total": 68,
+      "chambre": "AN"
+    },
+    "Ensemble pour la République (AN)": {
+      "total": 91,
+      "chambre": "AN"
+    },
+    "Horizons & Indépendants (AN)": {
+      "total": 35,
+      "chambre": "AN"
+    },
+    "Union des droites pour la République (AN)": {
+      "total": 17,
+      "chambre": "AN"
+    },
+    "Droite Républicaine (AN)": {
+      "total": 48,
+      "chambre": "AN"
+    },
+    "Les Démocrates (AN)": {
+      "total": 37,
+      "chambre": "AN"
+    },
+    "Écologiste et Social (AN)": {
+      "total": 38,
+      "chambre": "AN"
+    },
+    "Gauche Démocrate et Républicaine (AN)": {
+      "total": 17,
+      "chambre": "AN"
+    }
+  },
+  "top_partis_affaires": [
+    {
+      "parti_nom": "Les Républicains",
+      "nb_affaires": 127,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Parti socialiste",
+      "nb_affaires": 51,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Rassemblement national",
+      "nb_affaires": 50,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Union pour la démocratie française",
+      "nb_affaires": 19,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Les Écologistes – Europe Écologie Les Verts",
+      "nb_affaires": 12,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Parti radical de gauche",
+      "nb_affaires": 12,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Union des démocrates et indépendants",
+      "nb_affaires": 12,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Reconquête",
+      "nb_affaires": 12,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Renaissance",
+      "nb_affaires": 11,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "La France insoumise",
+      "nb_affaires": 9,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Horizons",
+      "nb_affaires": 8,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Comité faire front",
+      "nb_affaires": 7,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Mouvement national républicain",
+      "nb_affaires": 6,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "Mouvement démocrate",
+      "nb_affaires": 5,
+      "position_spectre": null
+    },
+    {
+      "parti_nom": "républicains indépendants",
+      "nb_affaires": 4,
+      "position_spectre": null
+    }
+  ],
+  "top_partis_gravite": [
+    {
+      "parti_nom": "Parti communiste de France (marxiste-léniniste-maoïste)",
+      "score_moyen": 109.5,
+      "nb_affaires": 3
+    },
+    {
+      "parti_nom": "Rassemblement pour la France et l'indépendance de l'Europe",
+      "score_moyen": 102.38,
+      "nb_affaires": 2
+    },
+    {
+      "parti_nom": "Parti républicain",
+      "score_moyen": 100.0,
+      "nb_affaires": 3
+    },
+    {
+      "parti_nom": "Ligue du Sud",
+      "score_moyen": 71.25,
+      "nb_affaires": 2
+    },
+    {
+      "parti_nom": "Horizons",
+      "score_moyen": 61.88,
+      "nb_affaires": 8
+    },
+    {
+      "parti_nom": "Mouvement radical",
+      "score_moyen": 56.5,
+      "nb_affaires": 3
+    },
+    {
+      "parti_nom": "Les Républicains",
+      "score_moyen": 42.67,
+      "nb_affaires": 127
+    },
+    {
+      "parti_nom": "Union pour la démocratie française",
+      "score_moyen": 41.92,
+      "nb_affaires": 19
+    },
+    {
+      "parti_nom": "Parti socialiste",
+      "score_moyen": 40.97,
+      "nb_affaires": 51
+    },
+    {
+      "parti_nom": "Union des démocrates et indépendants",
+      "score_moyen": 39.12,
+      "nb_affaires": 12
+    },
+    {
+      "parti_nom": "Parti radical de gauche",
+      "score_moyen": 36.25,
+      "nb_affaires": 12
+    },
+    {
+      "parti_nom": "Mouvement démocrate",
+      "score_moyen": 35.4,
+      "nb_affaires": 5
+    },
+    {
+      "parti_nom": "Rassemblement pour la France",
+      "score_moyen": 24.5,
+      "nb_affaires": 3
+    },
+    {
+      "parti_nom": "Comité faire front",
+      "score_moyen": 23.14,
+      "nb_affaires": 7
+    },
+    {
+      "parti_nom": "Rassemblement national",
+      "score_moyen": 23.01,
+      "nb_affaires": 50
+    }
+  ]
+}
