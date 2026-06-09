@@ -1,42 +1,41 @@
 /**
- * app.js — Orchestration principale
- * Chargement des données, gestion des filtres, navigation entre onglets
+ * app.js — Orchestration principale v2
+ * Chargement des données normalisées, navigation, analyses statistiques formelles
  */
 
-/* ── État global ────────────────────────────────────────── */
+/* ── État global ─────────────────────────────────────────── */
+
 const AppState = {
   // Données brutes
   affairs: [],
-  parties: [],
+  parties: [],         // métriques normalisées (depuis parties.json)
+  cumulative: null,    // frise cumulative (depuis cumulative.json)
   stats: null,
 
-  // Filtres actifs
-  filtres: {
-    verdict: "tous",       // "tous" | "definitif"
-    periode: "tous",       // "tous" | "actuel"
-    chambre: "tous",       // "tous" | "AN" | "Sénat"
-  },
-
-  // Vues dérivées (mise à jour par applyFiltres)
-  filteredAffaires: [],
-  filteredParties: [],
-  filteredStats: null,
-  chronoRows: [],
-
-  // Stats avancées
+  // Analyses
+  pcaVars: ["taux_wikidata", "taux_recidive", "taux_definitif", "gravite_moyenne", "position_spectre"],
   pcaData: [],
   acpResult: null,
   clusterLabels: null,
-  corrMatrix: null,
-  corrVars: null,
+  corrVars: ["taux_wikidata", "taux_crapu", "taux_par_carriere", "taux_recidive", "taux_definitif", "gravite_moyenne", "position_spectre"],
+
+  // Métriques affichées
+  currentMetric: "taux_wikidata",
+  cumulMetric: "rate_wikidata",
+  selectedCumulParties: [],
+
+  // Régression
+  regXVar: "position_spectre",
+  regYVar: "taux_wikidata",
 
   // Tableau
   tableSort: { col: "annee", dir: -1 },
   tablePage: 0,
   PAGE_SIZE: 30,
+  tableFilteredAffaires: [],
 };
 
-/* ── Chargement ─────────────────────────────────────────── */
+/* ── Chargement ──────────────────────────────────────────── */
 
 async function loadJSON(path) {
   const r = await fetch(path);
@@ -46,145 +45,82 @@ async function loadJSON(path) {
 
 async function init() {
   try {
-    const [affairs, parties, stats] = await Promise.all([
+    const [affairs, parties, cumulative, stats] = await Promise.all([
       loadJSON("data/affairs.json"),
       loadJSON("data/parties.json"),
+      loadJSON("data/cumulative.json"),
       loadJSON("data/stats.json"),
     ]);
 
     AppState.affairs = affairs;
     AppState.parties = parties;
+    AppState.cumulative = cumulative;
     AppState.stats = stats;
 
-    // Remplir le select de filtres
+    // Date de génération
+    const elDate = document.getElementById("date-generation");
+    if (elDate && stats.meta?.date_generation) {
+      elDate.textContent = new Date(stats.meta.date_generation).toLocaleString("fr-FR");
+    }
+    const elMeta = document.getElementById("meta-info");
+    if (elMeta && stats.meta) {
+      elMeta.innerHTML = `<em>Données générées le ${new Date(stats.meta.date_generation).toLocaleString("fr-FR")} —
+        ${stats.meta.nb_affaires_total} affaires (${stats.meta.nb_affaires_definitif} définitives) ·
+        ${stats.meta.nb_politiciens} politiciens · ${stats.meta.nb_partis} partis ·
+        ${stats.meta.nb_avec_wikidata} partis avec données Wikidata</em>`;
+    }
+
+    // Données PCA (partis avec assez de métriques)
+    AppState.pcaData = parties.filter(p =>
+      p.taux_wikidata != null && p.position_spectre != null
+    );
+
+    // Pré-sélection des top partis pour la frise cumulative
+    const topPids = Object.entries(cumulative.partis || {})
+      .sort((a, b) => {
+        const lastA = Object.values(a[1].serie || {}).slice(-1)[0];
+        const lastB = Object.values(b[1].serie || {}).slice(-1)[0];
+        return (lastB?.rate_wikidata ?? 0) - (lastA?.rate_wikidata ?? 0);
+      })
+      .slice(0, 7)
+      .map(e => e[0]);
+    AppState.selectedCumulParties = topPids;
+
+    // Remplir le filtre parti du tableau
     populatePartiSelect(parties);
 
-    // Mettre à jour la date de génération
-    const el = document.getElementById("date-generation");
-    if (el && stats.meta?.date_generation) {
-      el.textContent = new Date(stats.meta.date_generation).toLocaleString("fr-FR");
-    }
-
-    // Mise à jour des meta-infos
-    const mi = document.getElementById("meta-info");
-    if (mi && stats.meta) {
-      mi.innerHTML = `
-        <em>Données générées le : ${new Date(stats.meta.date_generation).toLocaleString("fr-FR")}</em><br>
-        <em>Total affaires : ${stats.meta.nb_affaires_total} dont ${stats.meta.nb_affaires_definitif} définitives ·
-        Politiciens : ${stats.meta.nb_politiciens} · Partis : ${stats.meta.nb_partis}</em>
-      `;
-    }
-
-    applyFiltres();
+    // Initialiser l'interface
     initNav();
-    initFiltresGlobaux();
-    initTableau();
+    initMetricSelector();
+    initCumulativeSelector();
+    initPCAVarCheckboxes();
+    initRegressionSelectors();
     initStatistiques();
-    Export.initButtons(AppState);
+    initTableau();
     initModalMethodologie();
+    initHeatmapToggle();
+    Export.initButtons(AppState);
+
+    // Afficher l'onglet actif
+    renderTaux();
 
   } catch (e) {
     console.error("Erreur chargement :", e);
     document.body.innerHTML = `<div style="padding:40px;color:#dc2626">
       <h2>Erreur de chargement des données</h2>
-      <p>Vérifiez que le pipeline a été exécuté (<code>python data/scripts/process.py</code>).</p>
-      <pre>${e.message}</pre>
+      <p>Vérifiez que le pipeline a été exécuté : <code>python data/scripts/process.py</code></p>
+      <pre>${esc(e.message)}</pre>
     </div>`;
   }
 }
 
-/* ── Filtrage ───────────────────────────────────────────── */
+/* ── Navigation ─────────────────────────────────────────── */
 
-function applyFiltres() {
-  const { verdict, periode, chambre } = AppState.filtres;
-
-  let affaires = AppState.affairs;
-
-  if (verdict === "definitif") {
-    affaires = affaires.filter(a => a.is_definitif);
-  }
-  if (periode === "actuel") {
-    affaires = affaires.filter(a => a.is_current_mp);
-  }
-  if (chambre !== "tous") {
-    affaires = affaires.filter(a => a.chambre === chambre || (chambre === "AN" && !a.chambre));
-  }
-
-  AppState.filteredAffaires = affaires;
-
-  // Recalculer les stats par parti depuis les affaires filtrées
-  const statsParParti = {};
-  affaires.forEach(a => {
-    const pid = a.parti_id;
-    if (!pid) return;
-    if (!statsParParti[pid]) {
-      const pBase = AppState.parties.find(p => p.parti_id === pid) || {};
-      statsParParti[pid] = {
-        parti_id: pid,
-        parti_nom: a.parti_nom,
-        parti_nom_court: a.parti_nom_court,
-        position_spectre: a.position_spectre,
-        logo: pBase.logo || "",
-        nb_affaires: 0,
-        nb_affaires_definitif: 0,
-        nb_politiciens: new Set(),
-        score_total: 0,
-        total_actuel: pBase.total_actuel,
-        taux_actuel: pBase.taux_actuel,
-      };
-    }
-    statsParParti[pid].nb_affaires++;
-    if (a.is_definitif) statsParParti[pid].nb_affaires_definitif++;
-    statsParParti[pid].nb_politiciens.add(a.politicien_id);
-    statsParParti[pid].score_total += a.score_gravite || 0;
-  });
-
-  AppState.filteredParties = Object.values(statsParParti).map(p => ({
-    ...p,
-    nb_politiciens: p.nb_politiciens.size,
-    score_moyen: p.nb_affaires > 0 ? p.score_total / p.nb_affaires : 0,
-  }));
-
-  // Chronologie
-  const chrono = {};
-  affaires.forEach(a => {
-    if (!a.annee) return;
-    if (!chrono[a.annee]) chrono[a.annee] = {};
-    chrono[a.annee][a.parti_id] = (chrono[a.annee][a.parti_id] || 0) + 1;
-  });
-  AppState.chronoRows = Object.entries(chrono)
-    .sort((a, b) => a[0] - b[0])
-    .map(([annee, partis]) => ({ annee: parseInt(annee), ...partis }));
-
-  // Données PCA (à partir des partis filtrés avec position connue)
-  AppState.pcaData = AppState.filteredParties
-    .filter(p => p.position_spectre != null && p.nb_affaires >= 1)
-    .map(p => ({
-      parti_id: p.parti_id,
-      parti_nom: p.parti_nom,
-      parti_nom_court: p.parti_nom_court,
-      nb_affaires: p.nb_affaires,
-      nb_affaires_definitif: p.nb_affaires_definitif,
-      nb_politiciens: p.nb_politiciens,
-      score_moyen: p.score_moyen,
-      position_spectre: p.position_spectre,
-      taux_actuel: p.taux_actuel,
-    }));
-
-  // Redessiner la vue active
-  refreshActiveTab();
-}
-
-/* ── Navigation onglets ─────────────────────────────────── */
-
-let activeTab = "vue-ensemble";
+let activeTab = "taux";
 
 function initNav() {
   document.querySelectorAll(".tab").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tab = btn.dataset.tab;
-      switchTab(tab);
-    });
+    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
   });
 }
 
@@ -197,174 +133,471 @@ function switchTab(tab) {
 
 function refreshActiveTab() {
   switch (activeTab) {
-    case "vue-ensemble": renderBubble(); break;
-    case "par-parti":    renderBars(); break;
-    case "chronologie":  renderChrono(); break;
+    case "taux":         renderTaux(); break;
+    case "evolution":    renderEvolution(); break;
     case "statistiques": refreshSubTab(); break;
     case "tableau":      renderTableau(); break;
-    case "methodologie": break;
   }
 }
 
-/* ── Filtres globaux ────────────────────────────────────── */
+/* ── Sélecteur de métrique ──────────────────────────────── */
 
-function initFiltresGlobaux() {
-  document.getElementById("toggle-verdict")?.addEventListener("click", e => {
+function initMetricSelector() {
+  document.getElementById("toggle-metric")?.addEventListener("click", e => {
     const btn = e.target.closest(".toggle-btn");
     if (!btn) return;
-    document.querySelectorAll("#toggle-verdict .toggle-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("#toggle-metric .toggle-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    AppState.filtres.verdict = btn.dataset.val;
-    applyFiltres();
-  });
-
-  document.getElementById("toggle-periode")?.addEventListener("click", e => {
-    const btn = e.target.closest(".toggle-btn");
-    if (!btn) return;
-    document.querySelectorAll("#toggle-periode .toggle-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    AppState.filtres.periode = btn.dataset.val;
-    applyFiltres();
-  });
-
-  document.getElementById("toggle-chambre")?.addEventListener("click", e => {
-    const btn = e.target.closest(".toggle-btn");
-    if (!btn) return;
-    document.querySelectorAll("#toggle-chambre .toggle-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    AppState.filtres.chambre = btn.dataset.val;
-    applyFiltres();
+    AppState.currentMetric = btn.dataset.val;
+    renderTaux();
   });
 }
 
-/* ── Vue d'ensemble ─────────────────────────────────────── */
+/* ── Onglet 1 : Taux normalisés ─────────────────────────── */
 
-function renderBubble() {
-  Charts.drawBubble(AppState.filteredParties, AppState.filtres);
-}
+function renderTaux() {
+  const metric = AppState.currentMetric;
+  Charts.drawNormalizedBars(AppState.parties, metric);
+  renderKPIs();
 
-/* ── Par parti ──────────────────────────────────────────── */
-
-function renderBars() {
-  Charts.drawBars(AppState.filteredParties);
-}
-
-/* ── Chronologie ────────────────────────────────────────── */
-
-let chronoDebut = 1950, chronoFin = 2026;
-
-function renderChrono() {
-  const partiesMap = {};
-  AppState.parties.forEach(p => { partiesMap[p.parti_id] = p; });
-  Charts.drawChrono(AppState.stats?.chronologie || {}, partiesMap, chronoDebut, chronoFin);
-}
-
-function initChrono() {
-  const rDebut = document.getElementById("range-debut");
-  const rFin = document.getElementById("range-fin");
-  const lDebut = document.getElementById("label-debut");
-  const lFin = document.getElementById("label-fin");
-
-  if (!rDebut) return;
-
-  // Initialiser la plage selon les données
-  const annees = Object.keys(AppState.stats?.chronologie || {}).map(Number);
-  if (annees.length) {
-    const dMin = Math.min(...annees);
-    const dMax = Math.max(...annees);
-    rDebut.min = dMin; rFin.min = dMin;
-    rDebut.max = dMax; rFin.max = dMax;
-    rDebut.value = dMin; rFin.value = dMax;
-    lDebut.textContent = dMin; lFin.textContent = dMax;
-    chronoDebut = dMin; chronoFin = dMax;
+  // Heatmap si visible
+  if (document.getElementById("heatmap-section").style.display !== "none") {
+    renderHeatmap();
   }
+}
 
-  rDebut.addEventListener("input", () => {
-    chronoDebut = parseInt(rDebut.value);
-    lDebut.textContent = chronoDebut;
-    if (activeTab === "chronologie") renderChrono();
-  });
-  rFin.addEventListener("input", () => {
-    chronoFin = parseInt(rFin.value);
-    lFin.textContent = chronoFin;
-    if (activeTab === "chronologie") renderChrono();
+function renderKPIs() {
+  const el = document.getElementById("kpi-row");
+  if (!el) return;
+
+  const p = AppState.parties;
+  const withWd = p.filter(x => x.taux_wikidata != null);
+  const nbTotal = AppState.stats?.meta?.nb_affaires_total ?? p.reduce((s, x) => s + x.nb_affaires, 0);
+  const nbDef = AppState.stats?.meta?.nb_affaires_definitif ?? p.reduce((s, x) => s + x.nb_affaires_definitif, 0);
+  const topWd = withWd.length ? [...withWd].sort((a, b) => b.taux_wikidata - a.taux_wikidata)[0] : null;
+  const topRec = [...p].sort((a, b) => b.taux_recidive - a.taux_recidive)[0];
+
+  el.innerHTML = [
+    { label: "Affaires totales", val: nbTotal, sub: `dont ${nbDef} définitives` },
+    { label: "Partis couverts", val: p.length, sub: `${withWd.length} avec données Wikidata` },
+    { label: "Taux Wikidata max", val: topWd ? topWd.taux_wikidata.toFixed(1) + "‰" : "N/A",
+      sub: topWd ? topWd.parti_nom_court || topWd.parti_nom : "" },
+    { label: "Récidive la plus haute", val: topRec ? (topRec.taux_recidive * 100).toFixed(0) + "%" : "N/A",
+      sub: topRec ? topRec.parti_nom_court || topRec.parti_nom : "" },
+  ].map(({ label, val, sub }) => `
+    <div class="kpi-card">
+      <div class="kpi-value">${val}</div>
+      <div class="kpi-label">${label}</div>
+      <div class="kpi-sub">${sub}</div>
+    </div>
+  `).join("");
+}
+
+function renderHeatmap() {
+  const metrics = [
+    "taux_wikidata", "taux_crapu", "taux_par_carriere",
+    "taux_recidive", "taux_definitif", "gravite_moyenne", "age_moyen_affaire"
+  ];
+  Charts.drawMetricsHeatmap(AppState.parties, metrics);
+}
+
+function initHeatmapToggle() {
+  document.getElementById("btn-toggle-heatmap")?.addEventListener("click", () => {
+    const section = document.getElementById("heatmap-section");
+    const btn = document.getElementById("btn-toggle-heatmap");
+    const hidden = section.style.display === "none";
+    section.style.display = hidden ? "block" : "none";
+    btn.textContent = hidden ? "Masquer la heatmap" : "Afficher la heatmap complète des métriques";
+    if (hidden) renderHeatmap();
   });
 }
 
-/* ── Statistiques avancées ──────────────────────────────── */
+/* ── Onglet 2 : Évolution temporelle ────────────────────── */
 
-const PCA_VARS = ["nb_affaires", "score_moyen", "position_spectre", "nb_politiciens"];
-const CORR_VARS = ["nb_affaires", "nb_affaires_definitif", "score_moyen", "position_spectre", "nb_politiciens"];
-let activeSubTab = "acp";
+function initCumulativeSelector() {
+  const container = document.getElementById("party-checkboxes");
+  if (!container) return;
+
+  const partis = AppState.cumulative?.partis || {};
+  const sorted = Object.entries(partis).sort((a, b) => {
+    const va = Object.values(a[1].serie).slice(-1)[0]?.rate_wikidata ?? 0;
+    const vb = Object.values(b[1].serie).slice(-1)[0]?.rate_wikidata ?? 0;
+    return vb - va;
+  });
+
+  container.innerHTML = sorted.map(([pid, data]) => {
+    const checked = AppState.selectedCumulParties.includes(pid);
+    return `<label class="party-checkbox-label">
+      <input type="checkbox" value="${esc(pid)}" ${checked ? "checked" : ""} />
+      ${esc(data.parti_nom_court || data.parti_nom)}
+    </label>`;
+  }).join("");
+
+  container.addEventListener("change", () => {
+    AppState.selectedCumulParties = [...container.querySelectorAll("input:checked")].map(i => i.value);
+    if (activeTab === "evolution") renderEvolution();
+  });
+
+  document.getElementById("toggle-cumul-metric")?.addEventListener("click", e => {
+    const btn = e.target.closest(".toggle-btn");
+    if (!btn) return;
+    document.querySelectorAll("#toggle-cumul-metric .toggle-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    AppState.cumulMetric = btn.dataset.val;
+    if (activeTab === "evolution") renderEvolution();
+  });
+}
+
+function renderEvolution() {
+  Charts.drawCumulative(AppState.cumulative, AppState.selectedCumulParties, AppState.cumulMetric);
+}
+
+/* ── Onglet 3 : Analyses statistiques ───────────────────── */
+
+let activeSubTab = "tests";
 
 function initStatistiques() {
   document.querySelectorAll(".sub-tab").forEach(btn => {
     btn.addEventListener("click", () => {
       activeSubTab = btn.dataset.subtab;
-      document.querySelectorAll(".sub-tab").forEach(b => b.classList.toggle("active", b.dataset.subtab === activeSubTab));
-      document.querySelectorAll(".sub-panel").forEach(p => p.classList.toggle("active", p.id === `subtab-${activeSubTab}`));
+      document.querySelectorAll(".sub-tab").forEach(b =>
+        b.classList.toggle("active", b.dataset.subtab === activeSubTab));
+      document.querySelectorAll(".sub-panel").forEach(p =>
+        p.classList.toggle("active", p.id === `subtab-${activeSubTab}`));
       refreshSubTab();
     });
   });
 
-  // k-slider
-  const kSlider = document.getElementById("k-slider");
-  const kLabel = document.getElementById("k-label");
-  kSlider?.addEventListener("input", () => {
-    kLabel.textContent = kSlider.value;
-    if (activeSubTab === "clustering") runClustering(parseInt(kSlider.value));
+  document.getElementById("k-slider")?.addEventListener("input", e => {
+    document.getElementById("k-label").textContent = e.target.value;
+    if (activeSubTab === "clustering") runClustering(parseInt(e.target.value));
   });
+
+  document.getElementById("btn-run-reg")?.addEventListener("click", runRegression);
 }
 
 function refreshSubTab() {
   if (AppState.pcaData.length < 3) return;
-
   switch (activeSubTab) {
-    case "acp":          runACP(); break;
+    case "tests":        runHypothesisTests(); break;
+    case "biplot":       runBiplot(); break;
     case "clustering":   runClustering(parseInt(document.getElementById("k-slider")?.value || 3)); break;
     case "correlations": runCorrelations(); break;
     case "regression":   runRegression(); break;
   }
 }
 
-function runACP() {
-  if (AppState.pcaData.length < 3) return;
-  const result = Stats.pca(AppState.pcaData, PCA_VARS);
-  AppState.acpResult = result;
-  Charts.drawACP(result, AppState.pcaData, AppState.clusterLabels);
+/* ── Tests d'hypothèses formels ─────────────────────────── */
+
+function runHypothesisTests() {
+  const container = document.getElementById("hypothesis-tests-container");
+  if (!container) return;
+
+  const p = AppState.pcaData;
+  if (p.length < 4) {
+    container.innerHTML = `<p class="text-muted">Données insuffisantes pour les tests statistiques.</p>`;
+    return;
+  }
+
+  const tests = [];
+
+  // Test 1 : Spearman entre spectre politique et taux Wikidata
+  const withWd = p.filter(x => x.taux_wikidata != null && x.position_spectre != null);
+  if (withWd.length >= 5) {
+    const x1 = withWd.map(d => d.position_spectre);
+    const y1 = withWd.map(d => d.taux_wikidata);
+    const res = Stats.spearman(x1, y1);
+    tests.push({
+      titre: "Corrélation spectre politique ↔ taux Wikidata",
+      H0: "Il n'existe pas de corrélation entre la position sur le spectre politique et le taux d'affaires normalisé (Wikidata).",
+      H1: "Il existe une corrélation significative entre ces deux variables.",
+      test: `Corrélation de Spearman (ρ)`,
+      stat: `ρ = ${res.r.toFixed(3)}`,
+      pvalue: res.pvalue,
+      n: res.n,
+      conclusion: conclu(res.pvalue, res.r, "corrélation positive", "corrélation négative"),
+      note: "Test non-paramétrique sur les rangs — adapté aux distributions asymétriques.",
+    });
+  }
+
+  // Test 2 : Spearman entre taux wikidata et gravité moyenne
+  const withGrav = p.filter(x => x.taux_wikidata != null && x.gravite_moyenne != null);
+  if (withGrav.length >= 5) {
+    const x2 = withGrav.map(d => d.taux_wikidata);
+    const y2 = withGrav.map(d => d.gravite_moyenne);
+    const res = Stats.spearman(x2, y2);
+    tests.push({
+      titre: "Corrélation taux Wikidata ↔ gravité moyenne",
+      H0: "Il n'existe pas de corrélation entre le taux d'affaires normalisé et la gravité moyenne des condamnations.",
+      H1: "Il existe une corrélation significative.",
+      test: "Corrélation de Spearman (ρ)",
+      stat: `ρ = ${res.r.toFixed(3)}`,
+      pvalue: res.pvalue,
+      n: res.n,
+      conclusion: conclu(res.pvalue, res.r,
+        "les partis avec plus d'affaires tendent vers une gravité plus élevée",
+        "les partis avec plus d'affaires tendent vers une gravité plus faible"),
+      note: "Attention : petits effectifs. Vérifier les valeurs extrêmes.",
+    });
+  }
+
+  // Test 3 : Mann-Whitney — gauche (<0) vs droite (>0) sur taux Wikidata
+  const gauche = p.filter(x => x.position_spectre != null && x.position_spectre < -0.1 && x.taux_wikidata != null)
+                  .map(d => d.taux_wikidata);
+  const droite = p.filter(x => x.position_spectre != null && x.position_spectre > 0.1 && x.taux_wikidata != null)
+                  .map(d => d.taux_wikidata);
+  if (gauche.length >= 3 && droite.length >= 3) {
+    const res = Stats.mannWhitney(gauche, droite);
+    const medG = median(gauche).toFixed(1), medD = median(droite).toFixed(1);
+    tests.push({
+      titre: "Comparaison gauche vs droite — Taux Wikidata",
+      H0: `Les partis de gauche (${gauche.length}) et de droite (${droite.length}) ont la même distribution de taux d'affaires.`,
+      H1: "Les deux groupes ont des distributions différentes.",
+      test: "Mann-Whitney U (test non-paramétrique à deux échantillons indépendants)",
+      stat: `U = ${res.U?.toFixed(0) ?? "N/A"}, z = ${res.z?.toFixed(3) ?? "N/A"}`,
+      pvalue: res.pvalue,
+      n: `gauche n=${gauche.length}, droite n=${droite.length}`,
+      conclusion: concluMW(res.pvalue, medG, medD),
+      note: `Médiane taux Wikidata — gauche : ${medG}‰, droite : ${medD}‰. Seuil position spectre : ±0,1.`,
+    });
+  }
+
+  // Test 4 : Kruskal-Wallis — comparaison entre 5 groupes spectre
+  const groups = [
+    p.filter(x => x.position_spectre != null && x.position_spectre <= -0.5 && x.taux_wikidata != null),
+    p.filter(x => x.position_spectre != null && x.position_spectre > -0.5 && x.position_spectre <= -0.1 && x.taux_wikidata != null),
+    p.filter(x => x.position_spectre != null && x.position_spectre > -0.1 && x.position_spectre <= 0.1 && x.taux_wikidata != null),
+    p.filter(x => x.position_spectre != null && x.position_spectre > 0.1 && x.position_spectre <= 0.5 && x.taux_wikidata != null),
+    p.filter(x => x.position_spectre != null && x.position_spectre > 0.5 && x.taux_wikidata != null),
+  ].filter(g => g.length >= 2).map(g => g.map(d => d.taux_wikidata));
+
+  const groupLabels = ["Gauche (< −0,5)", "Centre-gauche (−0,5 à −0,1)", "Centre (−0,1 à 0,1)", "Centre-droit (0,1 à 0,5)", "Droite (> 0,5)"];
+
+  if (groups.length >= 3) {
+    const res = Stats.kruskalWallis(groups);
+    tests.push({
+      titre: "Différences entre segments du spectre politique — Taux Wikidata",
+      H0: `Les ${groups.length} segments du spectre politique ont la même distribution de taux d'affaires normalisé.`,
+      H1: "Au moins un segment a une distribution différente.",
+      test: `Kruskal-Wallis H (${groups.length} groupes, df = ${res.df})`,
+      stat: `H = ${res.H?.toFixed(3) ?? "N/A"}`,
+      pvalue: res.pvalue,
+      n: groups.map((g, i) => `${groupLabels[i]} : n=${g.length}`).join(", "),
+      conclusion: concluKW(res.pvalue, groups.length),
+      note: "Tailles de groupes très inégales — interpréter avec prudence. Test post-hoc non réalisé.",
+    });
+  }
+
+  // Test 5 : Spearman taux_recidive ↔ gravite_moyenne
+  const withRec = p.filter(x => x.taux_recidive != null && x.gravite_moyenne != null);
+  if (withRec.length >= 5) {
+    const x5 = withRec.map(d => d.taux_recidive);
+    const y5 = withRec.map(d => d.gravite_moyenne);
+    const res = Stats.spearman(x5, y5);
+    tests.push({
+      titre: "Corrélation récidive ↔ gravité moyenne",
+      H0: "Il n'existe pas de corrélation entre le taux de récidive et la gravité moyenne des affaires.",
+      H1: "Il existe une corrélation significative.",
+      test: "Corrélation de Spearman (ρ)",
+      stat: `ρ = ${res.r.toFixed(3)}`,
+      pvalue: res.pvalue,
+      n: res.n,
+      conclusion: conclu(res.pvalue, res.r,
+        "les partis à forte récidive ont tendance à avoir des affaires plus graves",
+        "les partis à forte récidive ont tendance à avoir des affaires moins graves"),
+      note: "Attention à la construction circulaire du taux de récidive (dénominateur issu de Crapulopédia).",
+    });
+  }
+
+  container.innerHTML = tests.map(t => renderTestCard(t)).join("");
 }
 
-function runClustering(k) {
-  if (!AppState.acpResult) runACP();
-  if (AppState.pcaData.length < k) return;
+function renderTestCard(t) {
+  const sigClass = t.pvalue < 0.05 ? "test-sig" : "test-ns";
+  const sigLabel = t.pvalue < 0.001 ? "p < 0,001 ***"
+    : t.pvalue < 0.01  ? `p = ${t.pvalue.toFixed(4)} **`
+    : t.pvalue < 0.05  ? `p = ${t.pvalue.toFixed(4)} *`
+    : isNaN(t.pvalue)  ? "p = N/A"
+    : `p = ${t.pvalue.toFixed(4)} (ns)`;
 
-  const points = AppState.pcaData.map(d => PCA_VARS.map(v => d[v] ?? 0));
+  return `
+  <div class="test-card ${sigClass}">
+    <h4>${esc(t.titre)}</h4>
+    <table class="test-table">
+      <tr><th>H₀</th><td>${esc(t.H0)}</td></tr>
+      <tr><th>H₁</th><td>${esc(t.H1)}</td></tr>
+      <tr><th>Test</th><td>${esc(t.test)}</td></tr>
+      <tr><th>Statistique</th><td><code>${esc(t.stat)}</code></td></tr>
+      <tr><th>p-value</th><td><strong class="${sigClass}-text">${sigLabel}</strong></td></tr>
+      <tr><th>n</th><td>${esc(String(t.n))}</td></tr>
+      <tr><th>Conclusion</th><td>${esc(t.conclusion)}</td></tr>
+      ${t.note ? `<tr><th>Note</th><td class="text-muted small">${esc(t.note)}</td></tr>` : ""}
+    </table>
+  </div>`;
+}
+
+function conclu(pvalue, r, posLabel, negLabel) {
+  if (isNaN(pvalue)) return "Impossible à calculer (données insuffisantes).";
+  const dir = r > 0 ? posLabel : negLabel;
+  if (pvalue < 0.05) {
+    return `On rejette H₀ (α = 0,05). La corrélation est statistiquement significative (${dir}, ρ = ${r.toFixed(2)}).`;
+  }
+  return `On ne rejette pas H₀ (α = 0,05). La corrélation n'est pas statistiquement significative (ρ = ${r.toFixed(2)}).`;
+}
+
+function concluMW(pvalue, medG, medD) {
+  if (isNaN(pvalue)) return "Impossible à calculer (données insuffisantes).";
+  if (pvalue < 0.05) {
+    const diff = parseFloat(medG) > parseFloat(medD) ? "gauche > droite" : "droite > gauche";
+    return `On rejette H₀. La différence est statistiquement significative (${diff}, p = ${pvalue.toFixed(4)}).`;
+  }
+  return `On ne rejette pas H₀. Aucune différence significative entre gauche et droite (p = ${pvalue.toFixed(4)}).`;
+}
+
+function concluKW(pvalue, k) {
+  if (isNaN(pvalue)) return "Impossible à calculer.";
+  if (pvalue < 0.05) {
+    return `On rejette H₀. Au moins un segment du spectre a une distribution significativement différente (p = ${pvalue.toFixed(4)}). Un test post-hoc serait nécessaire pour identifier le(s) groupe(s) différent(s).`;
+  }
+  return `On ne rejette pas H₀. Aucune différence significative entre les ${k} segments (p = ${pvalue.toFixed(4)}).`;
+}
+
+function median(arr) {
+  const s = [...arr].sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+
+/* ── Checkboxes variables PCA ────────────────────────────── */
+
+function initPCAVarCheckboxes() {
+  const container = document.getElementById("pca-var-checkboxes");
+  if (!container) return;
+
+  const available = [
+    "taux_wikidata", "taux_crapu", "taux_par_carriere",
+    "taux_recidive", "taux_definitif", "gravite_moyenne",
+    "age_moyen_affaire", "position_spectre",
+  ];
+
+  container.innerHTML = available.map(v => `
+    <label class="var-checkbox-label">
+      <input type="checkbox" value="${v}" ${AppState.pcaVars.includes(v) ? "checked" : ""} />
+      ${esc(Charts.labelVar(v))}
+    </label>
+  `).join("");
+
+  container.addEventListener("change", () => {
+    AppState.pcaVars = [...container.querySelectorAll("input:checked")].map(i => i.value);
+    if (activeTab === "statistiques" && activeSubTab === "biplot") runBiplot();
+    if (activeTab === "statistiques" && activeSubTab === "clustering") runClustering(3);
+  });
+}
+
+/* ── ACP / Biplot ────────────────────────────────────────── */
+
+function runBiplot() {
+  const vars = AppState.pcaVars;
+  const data = AppState.pcaData.filter(p => vars.every(v => p[v] != null));
+  if (data.length < 3) {
+    document.getElementById("biplot-container").innerHTML =
+      `<p class="text-muted" style="padding:40px;text-align:center">Données insuffisantes (${data.length} partis avec toutes les variables sélectionnées).</p>`;
+    return;
+  }
+
+  const result = Stats.pca(data, vars);
+  AppState.acpResult = result;
+  AppState.pcaData = data;
+  Charts.drawBiplot(result, data, AppState.clusterLabels);
+
+  const vi = document.getElementById("variance-info");
+  if (vi) {
+    vi.textContent = `Variance expliquée — PC1 : ${(result.explainedRatio[0] * 100).toFixed(1)}%, PC2 : ${(result.explainedRatio[1] * 100).toFixed(1)}%`;
+  }
+}
+
+/* ── Classification ──────────────────────────────────────── */
+
+function runClustering(k) {
+  const vars = AppState.pcaVars;
+  const data = AppState.pcaData.filter(p => vars.every(v => p[v] != null));
+  if (data.length < k + 1) return;
+
+  if (!AppState.acpResult || AppState.acpResult.variables.join() !== vars.join()) {
+    const result = Stats.pca(data, vars);
+    AppState.acpResult = result;
+  }
+
+  const points = data.map(d => vars.map(v => d[v] ?? 0));
   const normalized = Stats.standardize(points);
   const { labels } = Stats.kmeans(normalized, k);
   AppState.clusterLabels = labels;
 
-  Charts.drawClustering(AppState.acpResult, AppState.pcaData, labels);
+  Charts.drawClustering(AppState.acpResult, data, labels, vars);
 
-  // Méthode du coude (calcul limité)
-  const elbow = Stats.elbowData(normalized, Math.min(6, AppState.pcaData.length - 1));
-  Charts.drawElbow(elbow);
+  const maxK = Math.min(6, data.length - 1);
+  if (maxK >= 2) {
+    const elbow = Stats.elbowData(normalized, maxK);
+    Charts.drawElbow(elbow);
+  }
 }
 
+/* ── Corrélations Spearman ───────────────────────────────── */
+
 function runCorrelations() {
-  const matrix = Stats.correlationMatrix(AppState.pcaData, CORR_VARS);
+  const vars = AppState.corrVars;
+  const data = AppState.parties.filter(p => vars.some(v => p[v] != null));
+  if (data.length < 3) return;
+
+  const matrix = Stats.spearmanMatrix(data, vars);
   AppState.corrMatrix = matrix;
-  AppState.corrVars = CORR_VARS;
-  Charts.drawCorrelations(matrix, CORR_VARS);
+  Charts.drawCorrelations(matrix, vars);
+}
+
+/* ── Régression ──────────────────────────────────────────── */
+
+function initRegressionSelectors() {
+  const regVarOptions = [
+    "taux_wikidata", "taux_crapu", "taux_par_carriere",
+    "taux_recidive", "taux_definitif", "gravite_moyenne",
+    "age_moyen_affaire", "position_spectre",
+  ];
+
+  const xSel = document.getElementById("reg-x-var");
+  const ySel = document.getElementById("reg-y-var");
+  if (!xSel || !ySel) return;
+
+  regVarOptions.forEach(v => {
+    const ox = document.createElement("option");
+    ox.value = v; ox.textContent = Charts.labelVar(v);
+    if (v === AppState.regXVar) ox.selected = true;
+    xSel.appendChild(ox);
+
+    const oy = document.createElement("option");
+    oy.value = v; oy.textContent = Charts.labelVar(v);
+    if (v === AppState.regYVar) oy.selected = true;
+    ySel.appendChild(oy);
+  });
+
+  xSel.addEventListener("change", () => { AppState.regXVar = xSel.value; });
+  ySel.addEventListener("change", () => { AppState.regYVar = ySel.value; });
 }
 
 function runRegression() {
-  const x = AppState.pcaData.map(d => d.position_spectre ?? 0);
-  const y = AppState.pcaData.map(d => d.nb_affaires ?? 0);
+  const xVar = AppState.regXVar;
+  const yVar = AppState.regYVar;
+
+  const data = AppState.parties.filter(p => p[xVar] != null && p[yVar] != null);
+  if (data.length < 3) return;
+
+  const x = data.map(d => d[xVar]);
+  const y = data.map(d => d[yVar]);
   const result = Stats.linearRegression(x, y);
-  Charts.drawRegression(result, AppState.pcaData, "position_spectre", "nb_affaires");
+
+  Charts.drawRegression(result, data, xVar, yVar);
 }
 
-/* ── Tableau détaillé ───────────────────────────────────── */
+/* ── Tableau détaillé ────────────────────────────────────── */
 
 let tableSearch = "", tableParti = "", tableStatut = "", tableGravite = 0;
 
@@ -375,25 +608,21 @@ function initTableau() {
   const sliderGravite = document.getElementById("filter-gravite");
   const labelGravite = document.getElementById("gravite-label");
 
-  search?.addEventListener("input", () => { tableSearch = search.value.toLowerCase(); renderTableau(); });
-  selParti?.addEventListener("change", () => { tableParti = selParti.value; renderTableau(); });
-  selStatut?.addEventListener("change", () => { tableStatut = selStatut.value; renderTableau(); });
+  search?.addEventListener("input", () => { tableSearch = search.value.toLowerCase(); AppState.tablePage = 0; renderTableau(); });
+  selParti?.addEventListener("change", () => { tableParti = selParti.value; AppState.tablePage = 0; renderTableau(); });
+  selStatut?.addEventListener("change", () => { tableStatut = selStatut.value; AppState.tablePage = 0; renderTableau(); });
   sliderGravite?.addEventListener("input", () => {
     tableGravite = parseFloat(sliderGravite.value);
     if (labelGravite) labelGravite.textContent = tableGravite;
+    AppState.tablePage = 0;
     renderTableau();
   });
 
-  // Tri par colonnes
   document.querySelectorAll("#affaires-table th[data-sort]").forEach(th => {
     th.addEventListener("click", () => {
       const col = th.dataset.sort;
-      if (AppState.tableSort.col === col) {
-        AppState.tableSort.dir *= -1;
-      } else {
-        AppState.tableSort.col = col;
-        AppState.tableSort.dir = -1;
-      }
+      if (AppState.tableSort.col === col) AppState.tableSort.dir *= -1;
+      else { AppState.tableSort.col = col; AppState.tableSort.dir = -1; }
       AppState.tablePage = 0;
       renderTableau();
     });
@@ -403,8 +632,7 @@ function initTableau() {
 function populatePartiSelect(parties) {
   const sel = document.getElementById("filter-parti");
   if (!sel) return;
-  const sorted = [...parties].sort((a, b) => a.parti_nom.localeCompare(b.parti_nom, "fr"));
-  sorted.forEach(p => {
+  [...parties].sort((a, b) => a.parti_nom.localeCompare(b.parti_nom, "fr")).forEach(p => {
     const opt = document.createElement("option");
     opt.value = p.parti_id;
     opt.textContent = p.parti_nom;
@@ -413,7 +641,7 @@ function populatePartiSelect(parties) {
 }
 
 function renderTableau() {
-  let rows = AppState.filteredAffaires;
+  let rows = AppState.affairs;
 
   if (tableSearch) {
     rows = rows.filter(a =>
@@ -426,7 +654,6 @@ function renderTableau() {
   if (tableStatut) rows = rows.filter(a => a.statut_verdict === tableStatut);
   if (tableGravite > 0) rows = rows.filter(a => (a.score_gravite || 0) >= tableGravite);
 
-  // Tri
   const { col, dir } = AppState.tableSort;
   rows = [...rows].sort((a, b) => {
     const va = a[col] ?? "", vb = b[col] ?? "";
@@ -460,21 +687,42 @@ function renderTableau() {
     </tr>
   `).join("");
 
-  // Pagination
   const pag = document.getElementById("pagination");
   if (pag) {
-    pag.innerHTML = Array.from({ length: pageCount }, (_, i) =>
-      `<button class="page-btn ${i === AppState.tablePage ? "active" : ""}" data-page="${i}">${i + 1}</button>`
-    ).join("");
-    pag.addEventListener("click", e => {
+    const maxPages = 10;
+    const start = Math.max(0, AppState.tablePage - Math.floor(maxPages / 2));
+    const end = Math.min(pageCount, start + maxPages);
+    pag.innerHTML = (AppState.tablePage > 0 ? `<button class="page-btn" data-page="${AppState.tablePage - 1}">◀</button>` : "") +
+      Array.from({ length: end - start }, (_, i) => i + start).map(i =>
+        `<button class="page-btn ${i === AppState.tablePage ? "active" : ""}" data-page="${i}">${i + 1}</button>`
+      ).join("") +
+      (AppState.tablePage < pageCount - 1 ? `<button class="page-btn" data-page="${AppState.tablePage + 1}">▶</button>` : "");
+
+    pag.onclick = e => {
       const btn = e.target.closest(".page-btn");
       if (btn) { AppState.tablePage = parseInt(btn.dataset.page); renderTableau(); }
-    });
+    };
   }
 
   const countEl = document.getElementById("table-count");
   if (countEl) countEl.textContent = `${total} affaire(s) correspondant aux filtres`;
 }
+
+/* ── Modal méthodologie ──────────────────────────────────── */
+
+function initModalMethodologie() {
+  const overlay = document.getElementById("modal-overlay");
+  document.getElementById("lien-methodologie")?.addEventListener("click", e => {
+    e.preventDefault(); overlay.hidden = false;
+  });
+  document.getElementById("modal-close")?.addEventListener("click", () => { overlay.hidden = true; });
+  overlay?.addEventListener("click", e => { if (e.target === overlay) overlay.hidden = true; });
+  document.getElementById("btn-voir-methodo")?.addEventListener("click", () => {
+    overlay.hidden = true; switchTab("methodologie");
+  });
+}
+
+/* ── Utilitaire HTML-escape ──────────────────────────────── */
 
 function esc(s) {
   if (!s && s !== 0) return "";
@@ -485,23 +733,6 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
-/* ── Modal méthodologie ─────────────────────────────────── */
+/* ── Démarrage ───────────────────────────────────────────── */
 
-function initModalMethodologie() {
-  const overlay = document.getElementById("modal-overlay");
-  const btnOpen = document.getElementById("lien-methodologie");
-  const btnClose = document.getElementById("modal-close");
-  const btnGo = document.getElementById("btn-voir-methodo");
-
-  btnOpen?.addEventListener("click", e => { e.preventDefault(); overlay.hidden = false; });
-  btnClose?.addEventListener("click", () => { overlay.hidden = true; });
-  overlay?.addEventListener("click", e => { if (e.target === overlay) overlay.hidden = true; });
-  btnGo?.addEventListener("click", () => { overlay.hidden = true; switchTab("methodologie"); });
-}
-
-/* ── Démarrage ──────────────────────────────────────────── */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await init();
-  initChrono();
-});
+document.addEventListener("DOMContentLoaded", () => { init(); });

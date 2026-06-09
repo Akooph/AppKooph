@@ -1,306 +1,307 @@
 {
   "meta": {
-    "date_generation": "2026-06-09T17:32:53.135602Z",
+    "date_generation": "2026-06-09T18:16:50.220470Z",
     "nb_affaires_total": 383,
     "nb_affaires_definitif": 309,
     "nb_politiciens": 333,
     "nb_partis": 39,
     "annee_min": 1965,
-    "annee_max": 2026
+    "annee_max": 2026,
+    "nb_avec_wikidata": 29,
+    "nb_avec_age": 0
   },
   "chronologie": {
     "1965": {
-      "Comité faire front": 2
+      "Q2985453": 2
     },
     "1967": {
-      "Comité faire front": 2,
-      "républicains indépendants": 1
+      "Q2985453": 2,
+      "Q2300622": 1
     },
     "1976": {
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q613786": 1
     },
     "1977": {
-      "Les Républicains": 1
+      "Q20012759": 1
     },
     "1978": {
-      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
-      "Parti communiste breton": 1
+      "Q111606973": 1,
+      "Q3142484": 1
     },
     "1980": {
-      "Rassemblement national": 1
+      "Q205150": 1
     },
     "1981": {
-      "Parti radical de gauche": 1
+      "Q427965": 1
     },
     "1983": {
-      "Union pour la démocratie française": 1
+      "Q827415": 1
     },
     "1986": {
-      "Rassemblement national": 1
+      "Q205150": 1
     },
     "1988": {
-      "Rassemblement national": 1
+      "Q205150": 1
     },
     "1991": {
-      "Les Républicains": 1,
-      "Rassemblement national": 1
+      "Q20012759": 1,
+      "Q205150": 1
     },
     "1992": {
-      "Solidarité et progrès": 1,
-      "Parti républicain": 1
+      "Q3489438": 1,
+      "Q3366676": 1
     },
     "1993": {
-      "Rassemblement national": 1
+      "Q205150": 1
     },
     "1994": {
-      "Les Républicains": 1
+      "Q20012759": 1
     },
     "1995": {
-      "Parti socialiste": 1,
-      "Parti radical de gauche": 1,
-      "Parti républicain": 1,
-      "Union pour la démocratie française": 2
+      "Q170972": 1,
+      "Q427965": 1,
+      "Q3366676": 1,
+      "Q827415": 2
     },
     "1996": {
-      "Union pour la démocratie française": 2,
-      "Parti socialiste": 2,
-      "Les Républicains": 2,
-      "Parti radical de gauche": 1,
-      "Parti républicain": 1,
-      "Rassemblement national": 1
+      "Q827415": 2,
+      "Q170972": 2,
+      "Q20012759": 2,
+      "Q427965": 1,
+      "Q3366676": 1,
+      "Q205150": 1
     },
     "1997": {
-      "Les Républicains": 6,
-      "Parti socialiste": 5,
-      "Union pour la démocratie française": 2,
-      "Parti radical de gauche": 1
+      "Q20012759": 6,
+      "Q170972": 5,
+      "Q827415": 2,
+      "Q427965": 1
     },
     "1998": {
-      "Parti socialiste": 1,
-      "Les Républicains": 3,
-      "Mouvement national républicain": 1,
-      "Rassemblement national": 2,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q170972": 1,
+      "Q20012759": 3,
+      "Q1469596": 1,
+      "Q205150": 2,
+      "Q613786": 1
     },
     "1999": {
-      "Les Républicains": 5,
-      "républicains indépendants": 1,
-      "Rassemblement national": 1,
-      "Union pour la démocratie française": 1
+      "Q20012759": 5,
+      "Q2300622": 1,
+      "Q205150": 1,
+      "Q827415": 1
     },
     "2000": {
-      "Mouvement national républicain": 1,
-      "Parti socialiste": 1,
-      "Rassemblement national": 1,
-      "Union pour la démocratie française": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q1469596": 1,
+      "Q170972": 1,
+      "Q205150": 1,
+      "Q827415": 1,
+      "Q613786": 1
     },
     "2001": {
-      "Les Républicains": 1,
-      "Rassemblement national": 3,
-      "Parti socialiste": 2,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q20012759": 1,
+      "Q205150": 3,
+      "Q170972": 2,
+      "Q613786": 1
     },
     "2002": {
-      "Les Républicains": 3,
-      "Rassemblement national": 1,
-      "Union pour la démocratie française": 2,
-      "Parti socialiste": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q20012759": 3,
+      "Q205150": 1,
+      "Q827415": 2,
+      "Q170972": 1,
+      "Q613786": 1
     },
     "2003": {
-      "Mouvement national républicain": 1,
-      "Parti radical de gauche": 1,
-      "Les Républicains": 4,
-      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q1469596": 1,
+      "Q427965": 1,
+      "Q20012759": 4,
+      "Q111606973": 1,
+      "Q613786": 1
     },
     "2004": {
-      "Les Républicains": 5,
-      "Union pour la démocratie française": 2
+      "Q20012759": 5,
+      "Q827415": 2
     },
     "2005": {
-      "Les Républicains": 4,
-      "Solidarité et progrès": 1,
-      "Rassemblement national": 1,
-      "Union pour la démocratie française": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q20012759": 4,
+      "Q3489438": 1,
+      "Q205150": 1,
+      "Q827415": 1,
+      "Q613786": 1
     },
     "2006": {
-      "Union pour la démocratie française": 2,
-      "Parti socialiste": 2,
-      "Les Républicains": 1,
-      "Mouvement national républicain": 1,
-      "Mouvement pour la France": 1,
-      "Rassemblement national": 1
+      "Q827415": 2,
+      "Q170972": 2,
+      "Q20012759": 1,
+      "Q1469596": 1,
+      "Q870654": 1,
+      "Q205150": 1
     },
     "2007": {
-      "Parti socialiste": 2,
-      "Les Républicains": 1
+      "Q170972": 2,
+      "Q20012759": 1
     },
     "2008": {
-      "Mouvement national républicain": 1,
-      "Les Républicains": 2,
-      "Union pour la démocratie française": 1,
-      "Rassemblement pour la France et l'indépendance de l'Europe": 1,
-      "Rassemblement national": 1,
-      "Parti socialiste": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1
+      "Q1469596": 1,
+      "Q20012759": 2,
+      "Q827415": 1,
+      "Q616463": 1,
+      "Q205150": 1,
+      "Q170972": 1,
+      "Q613786": 1
     },
     "2009": {
-      "Les Républicains": 6,
-      "Rassemblement pour la France et l'indépendance de l'Europe": 1,
-      "Rassemblement national": 2,
-      "Parti socialiste": 1
+      "Q20012759": 6,
+      "Q616463": 1,
+      "Q205150": 2,
+      "Q170972": 1
     },
     "2010": {
-      "Parti socialiste": 1,
-      "Les Républicains": 3,
-      "Comité faire front": 3
+      "Q170972": 1,
+      "Q20012759": 3,
+      "Q2985453": 3
     },
     "2011": {
-      "Mouvement national républicain": 1,
-      "Parti socialiste": 2,
-      "Les Républicains": 2,
-      "Reconquête": 1,
-      "républicains indépendants": 1
+      "Q1469596": 1,
+      "Q170972": 2,
+      "Q20012759": 2,
+      "Q109932430": 1,
+      "Q2300622": 1
     },
     "2012": {
-      "Les Républicains": 4,
-      "Union pour la démocratie française": 1,
-      "Union des démocrates et indépendants": 1,
-      "Rassemblement national": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1,
-      "Parti radical de gauche": 1
+      "Q20012759": 4,
+      "Q827415": 1,
+      "Q82892": 1,
+      "Q205150": 1,
+      "Q613786": 1,
+      "Q427965": 1
     },
     "2013": {
-      "Union des démocrates et indépendants": 3,
-      "Les Républicains": 2,
-      "Parti socialiste": 2,
-      "Rassemblement national": 1
+      "Q82892": 3,
+      "Q20012759": 2,
+      "Q170972": 2,
+      "Q205150": 1
     },
     "2014": {
-      "Parti socialiste": 2,
-      "Union des démocrates et indépendants": 3,
-      "Les Républicains": 3,
-      "Parti communiste de France (marxiste-léniniste-maoïste)": 1,
-      "républicains indépendants": 1
+      "Q170972": 2,
+      "Q82892": 3,
+      "Q20012759": 3,
+      "Q111606973": 1,
+      "Q2300622": 1
     },
     "2015": {
-      "Les Républicains": 7,
-      "Rassemblement national": 1
+      "Q20012759": 7,
+      "Q205150": 1
     },
     "2016": {
-      "Front démocrate": 1,
-      "Les Républicains": 2,
-      "Parti radical de gauche": 3,
-      "Parti socialiste": 2,
-      "Renaissance": 1
+      "Q18744486": 1,
+      "Q20012759": 2,
+      "Q427965": 3,
+      "Q170972": 2,
+      "Q23731823": 1
     },
     "2017": {
-      "Front démocrate": 1,
-      "Les Républicains": 6,
-      "Rassemblement national": 2,
-      "Mouvement pour la France": 1,
-      "Parti socialiste": 1
+      "Q18744486": 1,
+      "Q20012759": 6,
+      "Q205150": 2,
+      "Q870654": 1,
+      "Q170972": 1
     },
     "2018": {
-      "Les Républicains": 2,
-      "Alliance solidaire des Français de l’étranger": 1,
-      "Parti socialiste": 2,
-      "Mouvement démocrate": 1,
-      "Mouvement radical": 1,
-      "Parti national-libéral": 1,
-      "Rassemblement national": 1,
-      "Reconquête": 1,
-      "Union des démocrates et des écologistes": 1
+      "Q20012759": 2,
+      "Q41438511": 1,
+      "Q170972": 2,
+      "Q587370": 1,
+      "Q45149423": 1,
+      "Q47001428": 1,
+      "Q205150": 1,
+      "Q109932430": 1,
+      "Q21055512": 1
     },
     "2019": {
-      "Les Républicains": 3,
-      "Parti socialiste": 5,
-      "Les Écologistes – Europe Écologie Les Verts": 1,
-      "La France insoumise": 3,
-      "Parti radical de gauche": 2,
-      "Renaissance": 1,
-      "Rassemblement national": 1,
-      "La France audacieuse": 1
+      "Q20012759": 3,
+      "Q170972": 5,
+      "Q613786": 1,
+      "Q27978402": 3,
+      "Q427965": 2,
+      "Q23731823": 1,
+      "Q205150": 1,
+      "Q106689968": 1
     },
     "2020": {
-      "Les Républicains": 5,
-      "Rassemblement national": 4
+      "Q20012759": 5,
+      "Q205150": 4
     },
     "2021": {
-      "Les Républicains": 10,
-      "La France insoumise": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1,
-      "Les Nouveaux Démocrates": 1,
-      "Parti socialiste": 1,
-      "Ligue du Sud": 1,
-      "Union des démocrates et indépendants": 1,
-      "Renaissance": 2,
-      "Parti radical de gauche": 1
+      "Q20012759": 10,
+      "Q27978402": 1,
+      "Q613786": 1,
+      "Q104212739": 1,
+      "Q170972": 1,
+      "Q3240530": 1,
+      "Q82892": 1,
+      "Q23731823": 2,
+      "Q427965": 1
     },
     "2022": {
-      "Rassemblement national": 1,
-      "La France insoumise": 2,
-      "Mouvement radical": 1,
-      "Les Écologistes – Europe Écologie Les Verts": 1,
-      "Les Républicains": 4,
-      "Parti socialiste": 3,
-      "Renaissance": 1,
-      "Union des démocrates et indépendants": 1,
-      "Reconquête": 2
+      "Q205150": 1,
+      "Q27978402": 2,
+      "Q45149423": 1,
+      "Q613786": 1,
+      "Q20012759": 4,
+      "Q170972": 3,
+      "Q23731823": 1,
+      "Q82892": 1,
+      "Q109932430": 2
     },
     "2023": {
-      "Les Républicains": 5,
-      "Mouvement démocrate": 3,
-      "Parti socialiste": 3,
-      "La France insoumise": 1,
-      "Rassemblement pour la France": 1,
-      "Horizons": 1,
-      "Rassemblement national": 2,
-      "Front démocrate": 1,
-      "Alliance centriste": 1,
-      "Union pour la démocratie française": 1,
-      "Mouvement radical": 1,
-      "Soyons libres": 1,
-      "Reconquête": 2,
-      "Renaissance": 1
+      "Q20012759": 5,
+      "Q587370": 3,
+      "Q170972": 3,
+      "Q27978402": 1,
+      "Q3419936": 1,
+      "Q108846587": 1,
+      "Q205150": 2,
+      "Q18744486": 1,
+      "Q762083": 1,
+      "Q827415": 1,
+      "Q45149423": 1,
+      "Q65128542": 1,
+      "Q109932430": 2,
+      "Q23731823": 1
     },
     "2024": {
-      "Les Républicains": 11,
-      "Rassemblement national": 1,
-      "Parti socialiste": 5,
-      "Mouvement démocrate": 1,
-      "Horizons": 5,
-      "Rassemblement pour la France": 2,
-      "En commun": 1,
-      "Union des démocrates et indépendants": 1,
-      "Renaissance": 2,
-      "Pour La Réunion": 1,
-      "Cap sur l'avenir": 1,
-      "Reconquête": 3
+      "Q20012759": 11,
+      "Q205150": 1,
+      "Q170972": 5,
+      "Q587370": 1,
+      "Q108846587": 5,
+      "Q3419936": 2,
+      "Q109023546": 1,
+      "Q82892": 1,
+      "Q23731823": 2,
+      "Q3326782": 1,
+      "Q2937151": 1,
+      "Q109932430": 3
     },
     "2025": {
-      "Les Républicains": 12,
-      "Rassemblement national": 16,
-      "Guadeloupe unie, solidaire et responsable": 1,
-      "Parti socialiste": 3,
-      "Union des droites pour la République": 1,
-      "Renaissance": 3,
-      "Union des démocrates et indépendants": 1,
-      "Horizons": 2,
-      "Ligue du Sud": 1,
-      "La France insoumise": 2,
-      "Parti de la France": 1,
-      "Identité-Libertés": 1,
-      "Reconquête": 3
+      "Q20012759": 12,
+      "Q205150": 16,
+      "Q2182920": 1,
+      "Q170972": 3,
+      "Q127038760": 1,
+      "Q23731823": 3,
+      "Q82892": 1,
+      "Q108846587": 2,
+      "Q3240530": 1,
+      "Q27978402": 2,
+      "Q736406": 1,
+      "Q130517388": 1,
+      "Q109932430": 3
     },
     "2026": {
-      "Union des démocrates et indépendants": 1
+      "Q82892": 1
     }
   },
-  "pca_variables": [],
   "groupes_parlement": {
     "Groupe Rassemblement des démocrates, progressistes et indépendants (Sénat)": {
       "total": 19,
@@ -386,159 +387,5 @@
       "total": 17,
       "chambre": "AN"
     }
-  },
-  "top_partis_affaires": [
-    {
-      "parti_nom": "Les Républicains",
-      "nb_affaires": 127,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Parti socialiste",
-      "nb_affaires": 51,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Rassemblement national",
-      "nb_affaires": 50,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Union pour la démocratie française",
-      "nb_affaires": 19,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Les Écologistes – Europe Écologie Les Verts",
-      "nb_affaires": 12,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Parti radical de gauche",
-      "nb_affaires": 12,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Union des démocrates et indépendants",
-      "nb_affaires": 12,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Reconquête",
-      "nb_affaires": 12,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Renaissance",
-      "nb_affaires": 11,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "La France insoumise",
-      "nb_affaires": 9,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Horizons",
-      "nb_affaires": 8,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Comité faire front",
-      "nb_affaires": 7,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Mouvement national républicain",
-      "nb_affaires": 6,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "Mouvement démocrate",
-      "nb_affaires": 5,
-      "position_spectre": null
-    },
-    {
-      "parti_nom": "républicains indépendants",
-      "nb_affaires": 4,
-      "position_spectre": null
-    }
-  ],
-  "top_partis_gravite": [
-    {
-      "parti_nom": "Parti communiste de France (marxiste-léniniste-maoïste)",
-      "score_moyen": 109.5,
-      "nb_affaires": 3
-    },
-    {
-      "parti_nom": "Rassemblement pour la France et l'indépendance de l'Europe",
-      "score_moyen": 102.38,
-      "nb_affaires": 2
-    },
-    {
-      "parti_nom": "Parti républicain",
-      "score_moyen": 100.0,
-      "nb_affaires": 3
-    },
-    {
-      "parti_nom": "Ligue du Sud",
-      "score_moyen": 71.25,
-      "nb_affaires": 2
-    },
-    {
-      "parti_nom": "Horizons",
-      "score_moyen": 61.88,
-      "nb_affaires": 8
-    },
-    {
-      "parti_nom": "Mouvement radical",
-      "score_moyen": 56.5,
-      "nb_affaires": 3
-    },
-    {
-      "parti_nom": "Les Républicains",
-      "score_moyen": 42.67,
-      "nb_affaires": 127
-    },
-    {
-      "parti_nom": "Union pour la démocratie française",
-      "score_moyen": 41.92,
-      "nb_affaires": 19
-    },
-    {
-      "parti_nom": "Parti socialiste",
-      "score_moyen": 40.97,
-      "nb_affaires": 51
-    },
-    {
-      "parti_nom": "Union des démocrates et indépendants",
-      "score_moyen": 39.12,
-      "nb_affaires": 12
-    },
-    {
-      "parti_nom": "Parti radical de gauche",
-      "score_moyen": 36.25,
-      "nb_affaires": 12
-    },
-    {
-      "parti_nom": "Mouvement démocrate",
-      "score_moyen": 35.4,
-      "nb_affaires": 5
-    },
-    {
-      "parti_nom": "Rassemblement pour la France",
-      "score_moyen": 24.5,
-      "nb_affaires": 3
-    },
-    {
-      "parti_nom": "Comité faire front",
-      "score_moyen": 23.14,
-      "nb_affaires": 7
-    },
-    {
-      "parti_nom": "Rassemblement national",
-      "score_moyen": 23.01,
-      "nb_affaires": 50
-    }
-  ]
+  }
 }

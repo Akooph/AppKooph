@@ -79,36 +79,37 @@ const Export = (() => {
    */
   function getViewData(target, AppState) {
     switch (target) {
-      case "vue-ensemble":
+      case "taux":
         return (AppState.parties || []).map(p => ({
           parti: p.parti_nom,
           parti_court: p.parti_nom_court,
           position_spectre: p.position_spectre,
           nb_affaires: p.nb_affaires,
           nb_affaires_definitif: p.nb_affaires_definitif,
-          nb_politiciens_distincts: p.nb_politiciens,
-          score_moyen_gravite: p.score_moyen?.toFixed(2),
-          elus_actuels_total: p.total_actuel,
-          taux_affaires_pourcent: p.taux_actuel != null
-            ? (p.taux_actuel * 100).toFixed(1) + "%"
-            : "N/A",
+          nb_politiciens_crapu: p.nb_politiciens_crapu,
+          nb_politiciens_wikidata: p.nb_politiciens_wikidata,
+          taux_wikidata: p.taux_wikidata,
+          taux_crapu: p.taux_crapu,
+          taux_par_carriere: p.taux_par_carriere,
+          taux_recidive: p.taux_recidive,
+          taux_definitif: p.taux_definitif,
+          gravite_moyenne: p.gravite_moyenne,
+          age_moyen_affaire: p.age_moyen_affaire,
         }));
 
-      case "par-parti":
-        return (AppState.filteredParties || []).map(p => ({
-          parti: p.parti_nom,
-          nb_affaires_total: p.nb_affaires,
-          nb_definitif: p.nb_affaires_definitif,
-          nb_politiciens: p.nb_politiciens,
-          score_moyen: p.score_moyen?.toFixed(2),
-          taux_actuel: p.taux_actuel != null ? (p.taux_actuel * 100).toFixed(1) + "%" : "N/A",
-        }));
-
-      case "chronologie":
-        return (AppState.chronoRows || []);
+      case "evolution":
+        return Object.entries(AppState.cumulative?.partis || {}).flatMap(([pid, data]) =>
+          Object.entries(data.serie || {}).map(([annee, entry]) => ({
+            parti: data.parti_nom,
+            annee: parseInt(annee),
+            cum_affaires: entry.cum_affaires,
+            rate_wikidata: entry.rate_wikidata ?? "",
+            rate_crapu: entry.rate_crapu ?? "",
+          }))
+        );
 
       case "tableau":
-        return (AppState.tableFilteredAffaires || AppState.filteredAffaires || []).map(a => ({
+        return (AppState.tableFilteredAffaires || AppState.affairs || []).map(a => ({
           politicien: a.politicien_nom,
           parti: a.parti_nom,
           annee: a.annee,
@@ -118,8 +119,6 @@ const Export = (() => {
           prison_ferme_mois: a.prison_ferme,
           amende_ferme_euros: a.amende_ferme,
           ineligibilite_ferme_mois: a.ineligibilite_ferme,
-          parlement_actuel: a.is_current_mp ? "Oui" : "Non",
-          chambre: a.chambre || "",
         }));
 
       case "acp":
@@ -132,9 +131,9 @@ const Export = (() => {
       case "clustering":
         return (AppState.pcaData || []).map((d, i) => ({
           parti: d.parti_nom,
-          cluster: (AppState.clusterLabels?.[i] ?? "") + 1,
-          nb_affaires: d.nb_affaires,
-          score_moyen: d.score_moyen?.toFixed(2),
+          cluster: ((AppState.clusterLabels?.[i] ?? 0) + 1),
+          taux_wikidata: d.taux_wikidata,
+          gravite_moyenne: d.gravite_moyenne,
           position_spectre: d.position_spectre,
         }));
 
@@ -143,19 +142,20 @@ const Export = (() => {
           row.map((cell, j) => ({
             variable_x: AppState.corrVars?.[i],
             variable_y: AppState.corrVars?.[j],
-            r: cell.r?.toFixed(4),
+            rho_spearman: cell.r?.toFixed(4),
             p_value: cell.pvalue?.toFixed(4),
             n: cell.n,
           }))
         );
 
       case "regression":
-        return (AppState.pcaData || []).map(d => ({
-          parti: d.parti_nom,
-          position_spectre: d.position_spectre,
-          nb_affaires: d.nb_affaires,
-          score_moyen: d.score_moyen?.toFixed(2),
-        }));
+        return (AppState.parties || [])
+          .filter(d => d[AppState.regXVar] != null && d[AppState.regYVar] != null)
+          .map(d => ({
+            parti: d.parti_nom,
+            [AppState.regXVar]: d[AppState.regXVar],
+            [AppState.regYVar]: d[AppState.regYVar],
+          }));
 
       default:
         return [];

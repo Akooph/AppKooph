@@ -1,0 +1,3212 @@
+{
+  "years_range": [
+    1965,
+    2026
+  ],
+  "partis": {
+    "Q20012759": {
+      "parti_nom": "Les Républicains",
+      "parti_nom_court": "RPR/UMP/LR",
+      "position_spectre": 0.5625,
+      "serie": {
+        "1977": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1978": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1979": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1980": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1981": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1982": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1986": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1987": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1988": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1989": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1990": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1991": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0
+        },
+        "1992": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0
+        },
+        "1993": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0
+        },
+        "1994": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0
+        },
+        "1995": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0
+        },
+        "1996": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.0
+        },
+        "1997": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 10,
+          "rate_crapu": 1.1
+        },
+        "1998": {
+          "cum_affaires": 14,
+          "cum_politiciens_crapu": 12,
+          "rate_crapu": 1.167
+        },
+        "1999": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 1.267
+        },
+        "2000": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 1.267
+        },
+        "2001": {
+          "cum_affaires": 20,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 1.333
+        },
+        "2002": {
+          "cum_affaires": 23,
+          "cum_politiciens_crapu": 17,
+          "rate_crapu": 1.353
+        },
+        "2003": {
+          "cum_affaires": 27,
+          "cum_politiciens_crapu": 19,
+          "rate_crapu": 1.421
+        },
+        "2004": {
+          "cum_affaires": 32,
+          "cum_politiciens_crapu": 21,
+          "rate_crapu": 1.524
+        },
+        "2005": {
+          "cum_affaires": 36,
+          "cum_politiciens_crapu": 24,
+          "rate_crapu": 1.5
+        },
+        "2006": {
+          "cum_affaires": 37,
+          "cum_politiciens_crapu": 25,
+          "rate_crapu": 1.48
+        },
+        "2007": {
+          "cum_affaires": 38,
+          "cum_politiciens_crapu": 26,
+          "rate_crapu": 1.462
+        },
+        "2008": {
+          "cum_affaires": 40,
+          "cum_politiciens_crapu": 28,
+          "rate_crapu": 1.429
+        },
+        "2009": {
+          "cum_affaires": 46,
+          "cum_politiciens_crapu": 32,
+          "rate_crapu": 1.438
+        },
+        "2010": {
+          "cum_affaires": 49,
+          "cum_politiciens_crapu": 34,
+          "rate_crapu": 1.441
+        },
+        "2011": {
+          "cum_affaires": 51,
+          "cum_politiciens_crapu": 36,
+          "rate_crapu": 1.417
+        },
+        "2012": {
+          "cum_affaires": 55,
+          "cum_politiciens_crapu": 37,
+          "rate_crapu": 1.486
+        },
+        "2013": {
+          "cum_affaires": 57,
+          "cum_politiciens_crapu": 38,
+          "rate_crapu": 1.5
+        },
+        "2014": {
+          "cum_affaires": 60,
+          "cum_politiciens_crapu": 41,
+          "rate_crapu": 1.463,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 60000.0
+        },
+        "2015": {
+          "cum_affaires": 67,
+          "cum_politiciens_crapu": 47,
+          "rate_crapu": 1.426,
+          "cum_membres_wikidata": 56,
+          "rate_wikidata": 1196.4286
+        },
+        "2016": {
+          "cum_affaires": 69,
+          "cum_politiciens_crapu": 48,
+          "rate_crapu": 1.438,
+          "cum_membres_wikidata": 56,
+          "rate_wikidata": 1232.1429
+        },
+        "2017": {
+          "cum_affaires": 75,
+          "cum_politiciens_crapu": 51,
+          "rate_crapu": 1.471,
+          "cum_membres_wikidata": 57,
+          "rate_wikidata": 1315.7895
+        },
+        "2018": {
+          "cum_affaires": 77,
+          "cum_politiciens_crapu": 52,
+          "rate_crapu": 1.481,
+          "cum_membres_wikidata": 57,
+          "rate_wikidata": 1350.8772
+        },
+        "2019": {
+          "cum_affaires": 80,
+          "cum_politiciens_crapu": 54,
+          "rate_crapu": 1.481,
+          "cum_membres_wikidata": 57,
+          "rate_wikidata": 1403.5088
+        },
+        "2020": {
+          "cum_affaires": 85,
+          "cum_politiciens_crapu": 56,
+          "rate_crapu": 1.518,
+          "cum_membres_wikidata": 57,
+          "rate_wikidata": 1491.2281
+        },
+        "2021": {
+          "cum_affaires": 95,
+          "cum_politiciens_crapu": 62,
+          "rate_crapu": 1.532,
+          "cum_membres_wikidata": 59,
+          "rate_wikidata": 1610.1695
+        },
+        "2022": {
+          "cum_affaires": 99,
+          "cum_politiciens_crapu": 64,
+          "rate_crapu": 1.547,
+          "cum_membres_wikidata": 62,
+          "rate_wikidata": 1596.7742
+        },
+        "2023": {
+          "cum_affaires": 104,
+          "cum_politiciens_crapu": 68,
+          "rate_crapu": 1.529,
+          "cum_membres_wikidata": 63,
+          "rate_wikidata": 1650.7937
+        },
+        "2024": {
+          "cum_affaires": 115,
+          "cum_politiciens_crapu": 76,
+          "rate_crapu": 1.513,
+          "cum_membres_wikidata": 63,
+          "rate_wikidata": 1825.3968
+        },
+        "2025": {
+          "cum_affaires": 127,
+          "cum_politiciens_crapu": 81,
+          "rate_crapu": 1.568,
+          "cum_membres_wikidata": 65,
+          "rate_wikidata": 1953.8462
+        },
+        "2026": {
+          "cum_affaires": 127,
+          "cum_politiciens_crapu": 81,
+          "rate_crapu": 1.568,
+          "cum_membres_wikidata": 66,
+          "rate_wikidata": 1924.2424
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q170972": {
+      "parti_nom": "Parti socialiste",
+      "parti_nom_court": "PS",
+      "position_spectre": -0.4125,
+      "serie": {
+        "1995": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 101,
+          "rate_wikidata": 9.901
+        },
+        "1996": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 102,
+          "rate_wikidata": 29.4118
+        },
+        "1997": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 1.143,
+          "cum_membres_wikidata": 108,
+          "rate_wikidata": 74.0741
+        },
+        "1998": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 1.125,
+          "cum_membres_wikidata": 109,
+          "rate_wikidata": 82.5688
+        },
+        "1999": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 1.125,
+          "cum_membres_wikidata": 111,
+          "rate_wikidata": 81.0811
+        },
+        "2000": {
+          "cum_affaires": 10,
+          "cum_politiciens_crapu": 9,
+          "rate_crapu": 1.111,
+          "cum_membres_wikidata": 114,
+          "rate_wikidata": 87.7193
+        },
+        "2001": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.091,
+          "cum_membres_wikidata": 116,
+          "rate_wikidata": 103.4483
+        },
+        "2002": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.182,
+          "cum_membres_wikidata": 126,
+          "rate_wikidata": 103.1746
+        },
+        "2003": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.182,
+          "cum_membres_wikidata": 128,
+          "rate_wikidata": 101.5625
+        },
+        "2004": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.182,
+          "cum_membres_wikidata": 129,
+          "rate_wikidata": 100.7752
+        },
+        "2005": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.182,
+          "cum_membres_wikidata": 133,
+          "rate_wikidata": 97.7444
+        },
+        "2006": {
+          "cum_affaires": 15,
+          "cum_politiciens_crapu": 12,
+          "rate_crapu": 1.25,
+          "cum_membres_wikidata": 142,
+          "rate_wikidata": 105.6338
+        },
+        "2007": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 14,
+          "rate_crapu": 1.214,
+          "cum_membres_wikidata": 143,
+          "rate_wikidata": 118.8811
+        },
+        "2008": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 1.2,
+          "cum_membres_wikidata": 145,
+          "rate_wikidata": 124.1379
+        },
+        "2009": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 1.267,
+          "cum_membres_wikidata": 146,
+          "rate_wikidata": 130.137
+        },
+        "2010": {
+          "cum_affaires": 20,
+          "cum_politiciens_crapu": 16,
+          "rate_crapu": 1.25,
+          "cum_membres_wikidata": 147,
+          "rate_wikidata": 136.0544
+        },
+        "2011": {
+          "cum_affaires": 22,
+          "cum_politiciens_crapu": 18,
+          "rate_crapu": 1.222,
+          "cum_membres_wikidata": 149,
+          "rate_wikidata": 147.651
+        },
+        "2012": {
+          "cum_affaires": 22,
+          "cum_politiciens_crapu": 18,
+          "rate_crapu": 1.222,
+          "cum_membres_wikidata": 151,
+          "rate_wikidata": 145.6954
+        },
+        "2013": {
+          "cum_affaires": 24,
+          "cum_politiciens_crapu": 20,
+          "rate_crapu": 1.2,
+          "cum_membres_wikidata": 151,
+          "rate_wikidata": 158.9404
+        },
+        "2014": {
+          "cum_affaires": 26,
+          "cum_politiciens_crapu": 21,
+          "rate_crapu": 1.238,
+          "cum_membres_wikidata": 153,
+          "rate_wikidata": 169.9346
+        },
+        "2015": {
+          "cum_affaires": 26,
+          "cum_politiciens_crapu": 21,
+          "rate_crapu": 1.238,
+          "cum_membres_wikidata": 153,
+          "rate_wikidata": 169.9346
+        },
+        "2016": {
+          "cum_affaires": 28,
+          "cum_politiciens_crapu": 23,
+          "rate_crapu": 1.217,
+          "cum_membres_wikidata": 153,
+          "rate_wikidata": 183.0065
+        },
+        "2017": {
+          "cum_affaires": 29,
+          "cum_politiciens_crapu": 23,
+          "rate_crapu": 1.261,
+          "cum_membres_wikidata": 153,
+          "rate_wikidata": 189.5425
+        },
+        "2018": {
+          "cum_affaires": 31,
+          "cum_politiciens_crapu": 24,
+          "rate_crapu": 1.292,
+          "cum_membres_wikidata": 154,
+          "rate_wikidata": 201.2987
+        },
+        "2019": {
+          "cum_affaires": 36,
+          "cum_politiciens_crapu": 28,
+          "rate_crapu": 1.286,
+          "cum_membres_wikidata": 154,
+          "rate_wikidata": 233.7662
+        },
+        "2020": {
+          "cum_affaires": 36,
+          "cum_politiciens_crapu": 28,
+          "rate_crapu": 1.286,
+          "cum_membres_wikidata": 154,
+          "rate_wikidata": 233.7662
+        },
+        "2021": {
+          "cum_affaires": 37,
+          "cum_politiciens_crapu": 28,
+          "rate_crapu": 1.321,
+          "cum_membres_wikidata": 154,
+          "rate_wikidata": 240.2597
+        },
+        "2022": {
+          "cum_affaires": 40,
+          "cum_politiciens_crapu": 31,
+          "rate_crapu": 1.29,
+          "cum_membres_wikidata": 154,
+          "rate_wikidata": 259.7403
+        },
+        "2023": {
+          "cum_affaires": 43,
+          "cum_politiciens_crapu": 33,
+          "rate_crapu": 1.303,
+          "cum_membres_wikidata": 155,
+          "rate_wikidata": 277.4194
+        },
+        "2024": {
+          "cum_affaires": 48,
+          "cum_politiciens_crapu": 36,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 157,
+          "rate_wikidata": 305.7325
+        },
+        "2025": {
+          "cum_affaires": 51,
+          "cum_politiciens_crapu": 36,
+          "rate_crapu": 1.417,
+          "cum_membres_wikidata": 157,
+          "rate_wikidata": 324.8408
+        },
+        "2026": {
+          "cum_affaires": 51,
+          "cum_politiciens_crapu": 36,
+          "rate_crapu": 1.417,
+          "cum_membres_wikidata": 157,
+          "rate_wikidata": 324.8408
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q205150": {
+      "parti_nom": "Rassemblement national",
+      "parti_nom_court": "FN/RN",
+      "position_spectre": 0.9166666666666667,
+      "serie": {
+        "1980": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 90.9091
+        },
+        "1981": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 90.9091
+        },
+        "1982": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 90.9091
+        },
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 13,
+          "rate_wikidata": 76.9231
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 15,
+          "rate_wikidata": 66.6667
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 45.4545
+        },
+        "1986": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 25,
+          "rate_wikidata": 80.0
+        },
+        "1987": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 28,
+          "rate_wikidata": 71.4286
+        },
+        "1988": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 31,
+          "rate_wikidata": 96.7742
+        },
+        "1989": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 34,
+          "rate_wikidata": 88.2353
+        },
+        "1990": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 36,
+          "rate_wikidata": 83.3333
+        },
+        "1991": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 37,
+          "rate_wikidata": 108.1081
+        },
+        "1992": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 105.2632
+        },
+        "1993": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 131.5789
+        },
+        "1994": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 131.5789
+        },
+        "1995": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 131.5789
+        },
+        "1996": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 157.8947
+        },
+        "1997": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 39,
+          "rate_wikidata": 153.8462
+        },
+        "1998": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.667,
+          "cum_membres_wikidata": 39,
+          "rate_wikidata": 205.1282
+        },
+        "1999": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 225.0
+        },
+        "2000": {
+          "cum_affaires": 10,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 41,
+          "rate_wikidata": 243.9024
+        },
+        "2001": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.167,
+          "cum_membres_wikidata": 43,
+          "rate_wikidata": 302.3256
+        },
+        "2002": {
+          "cum_affaires": 14,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 45,
+          "rate_wikidata": 311.1111
+        },
+        "2003": {
+          "cum_affaires": 14,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 46,
+          "rate_wikidata": 304.3478
+        },
+        "2004": {
+          "cum_affaires": 14,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 46,
+          "rate_wikidata": 304.3478
+        },
+        "2005": {
+          "cum_affaires": 15,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.143,
+          "cum_membres_wikidata": 48,
+          "rate_wikidata": 312.5
+        },
+        "2006": {
+          "cum_affaires": 16,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.286,
+          "cum_membres_wikidata": 49,
+          "rate_wikidata": 326.5306
+        },
+        "2007": {
+          "cum_affaires": 16,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.286,
+          "cum_membres_wikidata": 50,
+          "rate_wikidata": 320.0
+        },
+        "2008": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 2.429,
+          "cum_membres_wikidata": 53,
+          "rate_wikidata": 320.7547
+        },
+        "2009": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 2.375,
+          "cum_membres_wikidata": 54,
+          "rate_wikidata": 351.8519
+        },
+        "2010": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 2.375,
+          "cum_membres_wikidata": 62,
+          "rate_wikidata": 306.4516
+        },
+        "2011": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 2.375,
+          "cum_membres_wikidata": 65,
+          "rate_wikidata": 292.3077
+        },
+        "2012": {
+          "cum_affaires": 20,
+          "cum_politiciens_crapu": 9,
+          "rate_crapu": 2.222,
+          "cum_membres_wikidata": 66,
+          "rate_wikidata": 303.0303
+        },
+        "2013": {
+          "cum_affaires": 21,
+          "cum_politiciens_crapu": 10,
+          "rate_crapu": 2.1,
+          "cum_membres_wikidata": 71,
+          "rate_wikidata": 295.7746
+        },
+        "2014": {
+          "cum_affaires": 21,
+          "cum_politiciens_crapu": 10,
+          "rate_crapu": 2.1,
+          "cum_membres_wikidata": 74,
+          "rate_wikidata": 283.7838
+        },
+        "2015": {
+          "cum_affaires": 22,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 81,
+          "rate_wikidata": 271.6049
+        },
+        "2016": {
+          "cum_affaires": 22,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 86,
+          "rate_wikidata": 255.814
+        },
+        "2017": {
+          "cum_affaires": 24,
+          "cum_politiciens_crapu": 12,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 89,
+          "rate_wikidata": 269.6629
+        },
+        "2018": {
+          "cum_affaires": 25,
+          "cum_politiciens_crapu": 12,
+          "rate_crapu": 2.083,
+          "cum_membres_wikidata": 100,
+          "rate_wikidata": 250.0
+        },
+        "2019": {
+          "cum_affaires": 26,
+          "cum_politiciens_crapu": 12,
+          "rate_crapu": 2.167,
+          "cum_membres_wikidata": 102,
+          "rate_wikidata": 254.902
+        },
+        "2020": {
+          "cum_affaires": 30,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 106,
+          "rate_wikidata": 283.0189
+        },
+        "2021": {
+          "cum_affaires": 30,
+          "cum_politiciens_crapu": 15,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 110,
+          "rate_wikidata": 272.7273
+        },
+        "2022": {
+          "cum_affaires": 31,
+          "cum_politiciens_crapu": 16,
+          "rate_crapu": 1.938,
+          "cum_membres_wikidata": 111,
+          "rate_wikidata": 279.2793
+        },
+        "2023": {
+          "cum_affaires": 33,
+          "cum_politiciens_crapu": 17,
+          "rate_crapu": 1.941,
+          "cum_membres_wikidata": 111,
+          "rate_wikidata": 297.2973
+        },
+        "2024": {
+          "cum_affaires": 34,
+          "cum_politiciens_crapu": 17,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 117,
+          "rate_wikidata": 290.5983
+        },
+        "2025": {
+          "cum_affaires": 50,
+          "cum_politiciens_crapu": 26,
+          "rate_crapu": 1.923,
+          "cum_membres_wikidata": 119,
+          "rate_wikidata": 420.1681
+        },
+        "2026": {
+          "cum_affaires": 50,
+          "cum_politiciens_crapu": 26,
+          "rate_crapu": 1.923,
+          "cum_membres_wikidata": 120,
+          "rate_wikidata": 416.6667
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q827415": {
+      "parti_nom": "Union pour la démocratie française",
+      "parti_nom_court": "UDF",
+      "position_spectre": 0.075,
+      "serie": {
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 142.8571
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 142.8571
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 142.8571
+        },
+        "1986": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 9,
+          "rate_wikidata": 111.1111
+        },
+        "1987": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 9,
+          "rate_wikidata": 111.1111
+        },
+        "1988": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1989": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1990": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1991": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1992": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1993": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1994": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1995": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 272.7273
+        },
+        "1996": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 454.5455
+        },
+        "1997": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.167,
+          "cum_membres_wikidata": 14,
+          "rate_wikidata": 500.0
+        },
+        "1998": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.167,
+          "cum_membres_wikidata": 14,
+          "rate_wikidata": 500.0
+        },
+        "1999": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 15,
+          "rate_wikidata": 533.3333
+        },
+        "2000": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 15,
+          "rate_wikidata": 600.0
+        },
+        "2001": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 15,
+          "rate_wikidata": 600.0
+        },
+        "2002": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 1.375,
+          "cum_membres_wikidata": 16,
+          "rate_wikidata": 687.5
+        },
+        "2003": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 8,
+          "rate_crapu": 1.375,
+          "cum_membres_wikidata": 17,
+          "rate_wikidata": 647.0588
+        },
+        "2004": {
+          "cum_affaires": 13,
+          "cum_politiciens_crapu": 10,
+          "rate_crapu": 1.3,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 684.2105
+        },
+        "2005": {
+          "cum_affaires": 14,
+          "cum_politiciens_crapu": 11,
+          "rate_crapu": 1.273,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 736.8421
+        },
+        "2006": {
+          "cum_affaires": 16,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.231,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 842.1053
+        },
+        "2007": {
+          "cum_affaires": 16,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.231,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 842.1053
+        },
+        "2008": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.308,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 894.7368
+        },
+        "2009": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.308,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 894.7368
+        },
+        "2010": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.308,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 894.7368
+        },
+        "2011": {
+          "cum_affaires": 17,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.308,
+          "cum_membres_wikidata": 19,
+          "rate_wikidata": 894.7368
+        },
+        "2012": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2013": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2014": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2015": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2016": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2017": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2018": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2019": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2020": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2021": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2022": {
+          "cum_affaires": 18,
+          "cum_politiciens_crapu": 13,
+          "rate_crapu": 1.385,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 857.1429
+        },
+        "2023": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 14,
+          "rate_crapu": 1.357,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 904.7619
+        },
+        "2024": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 14,
+          "rate_crapu": 1.357,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 904.7619
+        },
+        "2025": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 14,
+          "rate_crapu": 1.357,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 904.7619
+        },
+        "2026": {
+          "cum_affaires": 19,
+          "cum_politiciens_crapu": 14,
+          "rate_crapu": 1.357,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 904.7619
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q613786": {
+      "parti_nom": "Les Écologistes – Europe Écologie Les Verts",
+      "parti_nom_court": "EELV",
+      "position_spectre": -0.44999999999999996,
+      "serie": {
+        "1976": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1977": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1978": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1979": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1980": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1981": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1982": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1986": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1987": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1988": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1989": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1990": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1991": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1992": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1993": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1994": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1995": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1996": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1997": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1998": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "1999": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "2000": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 3.0
+        },
+        "2001": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0
+        },
+        "2002": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 5.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 5000.0
+        },
+        "2003": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 6.0,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 3000.0
+        },
+        "2004": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 6.0,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 3000.0
+        },
+        "2005": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 7.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 2333.3333
+        },
+        "2006": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 7.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1750.0
+        },
+        "2007": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 7.0,
+          "cum_membres_wikidata": 5,
+          "rate_wikidata": 1400.0
+        },
+        "2008": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 8.0,
+          "cum_membres_wikidata": 5,
+          "rate_wikidata": 1600.0
+        },
+        "2009": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 8.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 800.0
+        },
+        "2010": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 8.0,
+          "cum_membres_wikidata": 28,
+          "rate_wikidata": 285.7143
+        },
+        "2011": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 8.0,
+          "cum_membres_wikidata": 29,
+          "rate_wikidata": 275.8621
+        },
+        "2012": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 30,
+          "rate_wikidata": 300.0
+        },
+        "2013": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 31,
+          "rate_wikidata": 290.3226
+        },
+        "2014": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 31,
+          "rate_wikidata": 290.3226
+        },
+        "2015": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 33,
+          "rate_wikidata": 272.7273
+        },
+        "2016": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 33,
+          "rate_wikidata": 272.7273
+        },
+        "2017": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 34,
+          "rate_wikidata": 264.7059
+        },
+        "2018": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 9.0,
+          "cum_membres_wikidata": 34,
+          "rate_wikidata": 264.7059
+        },
+        "2019": {
+          "cum_affaires": 10,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 5.0,
+          "cum_membres_wikidata": 35,
+          "rate_wikidata": 285.7143
+        },
+        "2020": {
+          "cum_affaires": 10,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 5.0,
+          "cum_membres_wikidata": 36,
+          "rate_wikidata": 277.7778
+        },
+        "2021": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 3.667,
+          "cum_membres_wikidata": 36,
+          "rate_wikidata": 305.5556
+        },
+        "2022": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 37,
+          "rate_wikidata": 324.3243
+        },
+        "2023": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 37,
+          "rate_wikidata": 324.3243
+        },
+        "2024": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 315.7895
+        },
+        "2025": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 315.7895
+        },
+        "2026": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 38,
+          "rate_wikidata": 315.7895
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q427965": {
+      "parti_nom": "Parti radical de gauche",
+      "parti_nom_court": "MRG",
+      "position_spectre": -0.3,
+      "serie": {
+        "1981": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1982": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1986": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1987": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1988": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1989": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1990": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1991": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1992": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1993": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1994": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "1995": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "1996": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 3.0
+        },
+        "1997": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0
+        },
+        "1998": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 4000.0
+        },
+        "1999": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 4000.0
+        },
+        "2000": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 4000.0
+        },
+        "2001": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 4000.0
+        },
+        "2002": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 4000.0
+        },
+        "2003": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 5000.0
+        },
+        "2004": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 5000.0
+        },
+        "2005": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 1,
+          "rate_wikidata": 5000.0
+        },
+        "2006": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 2500.0
+        },
+        "2007": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 2500.0
+        },
+        "2008": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 2500.0
+        },
+        "2009": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 2500.0
+        },
+        "2010": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 2500.0
+        },
+        "2011": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 2.5,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 1666.6667
+        },
+        "2012": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 6,
+          "rate_wikidata": 1000.0
+        },
+        "2013": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 857.1429
+        },
+        "2014": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 857.1429
+        },
+        "2015": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 857.1429
+        },
+        "2016": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.8,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1285.7143
+        },
+        "2017": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.8,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1285.7143
+        },
+        "2018": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.8,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1285.7143
+        },
+        "2019": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.833,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1571.4286
+        },
+        "2020": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.833,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1571.4286
+        },
+        "2021": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        },
+        "2022": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        },
+        "2023": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        },
+        "2024": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        },
+        "2025": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        },
+        "2026": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 1714.2857
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q82892": {
+      "parti_nom": "Union des démocrates et indépendants",
+      "parti_nom_court": "UDI",
+      "position_spectre": 0.15,
+      "serie": {
+        "2012": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 7,
+          "rate_wikidata": 142.8571
+        },
+        "2013": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 400.0
+        },
+        "2014": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2015": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2016": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2017": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2018": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2019": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2020": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.333,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 636.3636
+        },
+        "2021": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 727.2727
+        },
+        "2022": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 2.25,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 818.1818
+        },
+        "2023": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 2.25,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 818.1818
+        },
+        "2024": {
+          "cum_affaires": 10,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 909.0909
+        },
+        "2025": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.833,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 1000.0
+        },
+        "2026": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 1.714,
+          "cum_membres_wikidata": 11,
+          "rate_wikidata": 1090.9091
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q109932430": {
+      "parti_nom": "Reconquête",
+      "parti_nom_court": "R!",
+      "position_spectre": 1.0,
+      "serie": {
+        "2011": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2012": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2013": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2014": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2015": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2016": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2017": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0
+        },
+        "2018": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "2019": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "2020": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0
+        },
+        "2021": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 16,
+          "rate_wikidata": 125.0
+        },
+        "2022": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 100.0
+        },
+        "2023": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 3.0,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 150.0
+        },
+        "2024": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 4.5,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 225.0
+        },
+        "2025": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 300.0
+        },
+        "2026": {
+          "cum_affaires": 12,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 4.0,
+          "cum_membres_wikidata": 40,
+          "rate_wikidata": 300.0
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q23731823": {
+      "parti_nom": "Renaissance",
+      "parti_nom_court": "LREM",
+      "position_spectre": 0.0,
+      "serie": {
+        "2016": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 52,
+          "rate_wikidata": 19.2308
+        },
+        "2017": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 89,
+          "rate_wikidata": 11.236
+        },
+        "2018": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 90,
+          "rate_wikidata": 11.1111
+        },
+        "2019": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 92,
+          "rate_wikidata": 21.7391
+        },
+        "2020": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 94,
+          "rate_wikidata": 21.2766
+        },
+        "2021": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 94,
+          "rate_wikidata": 42.5532
+        },
+        "2022": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 5,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 96,
+          "rate_wikidata": 52.0833
+        },
+        "2023": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 97,
+          "rate_wikidata": 61.8557
+        },
+        "2024": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 7,
+          "rate_crapu": 1.143,
+          "cum_membres_wikidata": 97,
+          "rate_wikidata": 82.4742
+        },
+        "2025": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 9,
+          "rate_crapu": 1.222,
+          "cum_membres_wikidata": 97,
+          "rate_wikidata": 113.4021
+        },
+        "2026": {
+          "cum_affaires": 11,
+          "cum_politiciens_crapu": 9,
+          "rate_crapu": 1.222,
+          "cum_membres_wikidata": 97,
+          "rate_wikidata": 113.4021
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q27978402": {
+      "parti_nom": "La France insoumise",
+      "parti_nom_court": "LFI",
+      "position_spectre": -0.9,
+      "serie": {
+        "2019": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 47,
+          "rate_wikidata": 63.8298
+        },
+        "2020": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 48,
+          "rate_wikidata": 62.5
+        },
+        "2021": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 48,
+          "rate_wikidata": 83.3333
+        },
+        "2022": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 49,
+          "rate_wikidata": 122.449
+        },
+        "2023": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75,
+          "cum_membres_wikidata": 49,
+          "rate_wikidata": 142.8571
+        },
+        "2024": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75,
+          "cum_membres_wikidata": 50,
+          "rate_wikidata": 140.0
+        },
+        "2025": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 50,
+          "rate_wikidata": 180.0
+        },
+        "2026": {
+          "cum_affaires": 9,
+          "cum_politiciens_crapu": 6,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 50,
+          "rate_wikidata": 180.0
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q108846587": {
+      "parti_nom": "Horizons",
+      "parti_nom_court": "Horizons",
+      "position_spectre": 0.3,
+      "serie": {
+        "2023": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 9,
+          "rate_wikidata": 111.1111
+        },
+        "2024": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 600.0
+        },
+        "2025": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.667,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 800.0
+        },
+        "2026": {
+          "cum_affaires": 8,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 2.667,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 800.0
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q2985453": {
+      "parti_nom": "Comité faire front",
+      "parti_nom_court": "Comité faire front",
+      "position_spectre": 1.0,
+      "serie": {
+        "1965": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0
+        },
+        "1966": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0
+        },
+        "1967": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1968": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1969": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1970": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1971": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1972": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1973": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1974": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1975": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1976": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1977": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1978": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1979": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1980": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1981": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1982": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1983": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1984": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1985": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1986": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1987": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1988": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1989": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1990": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1991": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1992": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1993": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1994": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1995": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1996": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1997": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1998": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "1999": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2000": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2001": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2002": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2003": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2004": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2005": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2006": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2007": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2008": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2009": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333
+        },
+        "2010": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2011": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2012": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2013": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2014": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2015": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2016": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2017": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2018": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2019": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2020": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2021": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2022": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2023": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2024": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2025": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        },
+        "2026": {
+          "cum_affaires": 7,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.75
+        }
+      },
+      "has_wikidata": false
+    },
+    "Q1469596": {
+      "parti_nom": "Mouvement national républicain",
+      "parti_nom_court": "MNR",
+      "position_spectre": 0.8333333333333334,
+      "serie": {
+        "1998": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 10,
+          "rate_wikidata": 100.0
+        },
+        "1999": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 41.6667
+        },
+        "2000": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 83.3333
+        },
+        "2001": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 83.3333
+        },
+        "2002": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 83.3333
+        },
+        "2003": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 125.0
+        },
+        "2004": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 125.0
+        },
+        "2005": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 125.0
+        },
+        "2006": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 166.6667
+        },
+        "2007": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 166.6667
+        },
+        "2008": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.667,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 208.3333
+        },
+        "2009": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.667,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 208.3333
+        },
+        "2010": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.667,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 208.3333
+        },
+        "2011": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2012": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2013": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2014": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2015": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2016": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2017": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2018": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2019": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2020": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2021": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2022": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2023": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2024": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2025": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        },
+        "2026": {
+          "cum_affaires": 6,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.5,
+          "cum_membres_wikidata": 24,
+          "rate_wikidata": 250.0
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q587370": {
+      "parti_nom": "Mouvement démocrate",
+      "parti_nom_court": "MoDem",
+      "position_spectre": 0.15,
+      "serie": {
+        "2018": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 47.619
+        },
+        "2019": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 21,
+          "rate_wikidata": 47.619
+        },
+        "2020": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 45.4545
+        },
+        "2021": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 45.4545
+        },
+        "2022": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 45.4545
+        },
+        "2023": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 181.8182
+        },
+        "2024": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.25,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 227.2727
+        },
+        "2025": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.25,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 227.2727
+        },
+        "2026": {
+          "cum_affaires": 5,
+          "cum_politiciens_crapu": 4,
+          "rate_crapu": 1.25,
+          "cum_membres_wikidata": 22,
+          "rate_wikidata": 227.2727
+        }
+      },
+      "has_wikidata": true
+    },
+    "Q2300622": {
+      "parti_nom": "républicains indépendants",
+      "parti_nom_court": "RI",
+      "position_spectre": null,
+      "serie": {
+        "1967": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 2,
+          "rate_wikidata": 500.0
+        },
+        "1968": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 333.3333
+        },
+        "1969": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 333.3333
+        },
+        "1970": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 333.3333
+        },
+        "1971": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 333.3333
+        },
+        "1972": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 3,
+          "rate_wikidata": 333.3333
+        },
+        "1973": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1974": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1975": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1976": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1977": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1978": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1979": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1980": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1981": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1982": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1983": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1984": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1985": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1986": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1987": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1988": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1989": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1990": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1991": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1992": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1993": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1994": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1995": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1996": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1997": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1998": {
+          "cum_affaires": 1,
+          "cum_politiciens_crapu": 1,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 250.0
+        },
+        "1999": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2000": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2001": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2002": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2003": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2004": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2005": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2006": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2007": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2008": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2009": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2010": {
+          "cum_affaires": 2,
+          "cum_politiciens_crapu": 2,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 500.0
+        },
+        "2011": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 750.0
+        },
+        "2012": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 750.0
+        },
+        "2013": {
+          "cum_affaires": 3,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.0,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 750.0
+        },
+        "2014": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2015": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2016": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2017": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2018": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2019": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2020": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2021": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2022": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2023": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2024": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2025": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        },
+        "2026": {
+          "cum_affaires": 4,
+          "cum_politiciens_crapu": 3,
+          "rate_crapu": 1.333,
+          "cum_membres_wikidata": 4,
+          "rate_wikidata": 1000.0
+        }
+      },
+      "has_wikidata": true
+    }
+  }
+}

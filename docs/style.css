@@ -480,3 +480,132 @@ footer {
 .loadings-table { border-collapse: collapse; width: 100%; font-size: 12px; }
 .loadings-table th, .loadings-table td { border: 1px solid var(--border); padding: 4px 8px; text-align: right; }
 .loadings-table th:first-child, .loadings-table td:first-child { text-align: left; }
+
+/* ─── KPI cards ──────────────────────────────────────────── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.kpi-value { font-size: 26px; font-weight: 700; color: var(--accent); }
+.kpi-label { font-size: 12px; font-weight: 600; color: var(--text); margin-top: 2px; }
+.kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ─── Sélecteur métrique ─────────────────────────────────── */
+.metric-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── Sélecteur partis (checkboxes) ─────────────────────── */
+.party-selector { margin: 12px 0; }
+.party-selector label { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 6px; }
+.party-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.party-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.party-checkbox-label:hover { background: var(--accent-light); }
+.party-checkbox-label input { margin: 0; }
+
+/* ─── Variables PCA (checkboxes) ─────────────────────────── */
+.var-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.var-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.var-checkbox-label input { margin: 0; }
+
+/* ─── Tests d'hypothèses ─────────────────────────────────── */
+#hypothesis-tests-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.test-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  border-left: 4px solid var(--border);
+}
+.test-card.test-sig { border-left-color: var(--ok); }
+.test-card.test-ns  { border-left-color: var(--text-muted); }
+.test-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.test-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+.test-table th, .test-table td { border: 1px solid var(--border); padding: 5px 8px; text-align: left; vertical-align: top; }
+.test-table th { background: var(--bg); font-size: 11px; font-weight: 600; width: 100px; }
+.test-sig-text { color: var(--ok); }
+.test-ns-text { color: var(--text-muted); }
+
+/* ─── Heatmap ────────────────────────────────────────────── */
+.heatmap-scroll { overflow-x: auto; margin-top: 12px; }
+.heatmap-table { border-collapse: collapse; font-size: 12px; white-space: nowrap; }
+.heatmap-table th, .heatmap-table td {
+  border: 1px solid var(--border);
+  padding: 5px 8px;
+  text-align: right;
+}
+.heatmap-table th { background: var(--bg); font-weight: 600; font-size: 11px; }
+.heatmap-table td:first-child { text-align: left; font-weight: 500; }
+
+/* ─── Section toggle (heatmap) ───────────────────────────── */
+.section-toggle { margin: 16px 0 0; }
+.btn-secondary {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.btn-secondary:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+/* ─── Cluster details ────────────────────────────────────── */
+.cluster-members { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.cluster-stats { font-size: 11px; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ─── Biplot (carré) ─────────────────────────────────────── */
+.chart-sq { min-height: 500px; }
+
+/* ─── #loadings-table ────────────────────────────────────── */
+#loadings-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+#loadings-table th, #loadings-table td { border: 1px solid var(--border); padding: 4px 8px; text-align: right; }
+#loadings-table th:first-child, #loadings-table td:first-child { text-align: left; }
