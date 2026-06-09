@@ -52,7 +52,7 @@ const Charts = (() => {
    * 1. Taux normalisés — barres horizontales comparées
    * ══════════════════════════════════════════════════════════ */
 
-  function drawNormalizedBars(parties, metric = "taux_wikidata") {
+  function drawNormalizedBars(parties, metric = "taux_wikidata", metricLabel = null) {
     destroyChart("normalized-chart");
     const ctx = document.getElementById("normalized-chart")?.getContext("2d");
     if (!ctx) return;
@@ -64,12 +64,13 @@ const Charts = (() => {
     if (!data.length) {
       const el = document.getElementById("normalized-chart");
       if (el) el.parentElement.innerHTML = `<p class="text-muted" style="padding:40px;text-align:center">
-        Aucune donnée disponible pour la métrique "${labelVar(metric)}".<br>
+        Aucune donnée disponible pour la métrique "${metricLabel || labelVar(metric)}".<br>
         Essayez <em>Taux Crapulopédia</em>.
       </p>`;
       return;
     }
 
+    const axisLabel = metricLabel || labelVar(metric);
     const labels = data.map(p => p.parti_nom_court || p.parti_nom.substring(0, 28));
     const colors = data.map(p => spectreColor(p.position_spectre));
 
@@ -78,7 +79,7 @@ const Charts = (() => {
       data: {
         labels,
         datasets: [{
-          label: labelVar(metric),
+          label: axisLabel,
           data: data.map(p => p[metric]),
           backgroundColor: colors.map(c => c + "cc"),
           borderColor: colors,
@@ -95,9 +96,10 @@ const Charts = (() => {
             callbacks: {
               label(ctx) {
                 const d = data[ctx.dataIndex];
+                const cumField = d.cum_affaires_at_t != null ? d.cum_affaires_at_t : d.nb_affaires;
                 const lines = [
-                  `${labelVar(metric)} : ${ctx.raw?.toFixed(2)}`,
-                  `Affaires : ${d.nb_affaires}`,
+                  `${axisLabel} : ${ctx.raw?.toFixed(2)}`,
+                  `Affaires cumulées : ${cumField}`,
                   `Politiciens (Wikidata) : ${d.nb_politiciens_wikidata ?? "N/A"}`,
                   `Spectre : ${d.position_spectre?.toFixed(2) ?? "N/A"}`,
                 ];
@@ -109,7 +111,7 @@ const Charts = (() => {
         scales: {
           x: {
             beginAtZero: true,
-            title: { display: true, text: labelVar(metric) },
+            title: { display: true, text: axisLabel },
             grid: { color: "#e5e7eb" },
           },
           y: {
@@ -701,6 +703,98 @@ const Charts = (() => {
     });
   }
 
+  /* ══════════════════════════════════════════════════════════
+   * 3b. Frise cumulative — dénominateur fixe (parties.json)
+   *     cumulByParty: {pid: [{year, cum}]}
+   *     partiesMap:   {pid: partyObject}
+   *     selectedIds:  [pid, ...]
+   *     useWikidata:  bool (true = ‰ Wikidata, false = % Crapu)
+   * ══════════════════════════════════════════════════════════ */
+
+  function drawCumulativeFixed(cumulByParty, partiesMap, selectedIds, yearMin, yearMax, useWikidata) {
+    destroyChart("cumul-chart");
+    const ctx = document.getElementById("cumul-chart")?.getContext("2d");
+    if (!ctx) return;
+
+    // Build a full year axis from yearMin to yearMax (only years with data)
+    const allYears = new Set();
+    selectedIds.forEach(pid => {
+      (cumulByParty[pid] || []).forEach(e => { if (e.year >= yearMin && e.year <= yearMax) allYears.add(e.year); });
+    });
+    const years = [...allYears].sort((a, b) => a - b);
+
+    if (!years.length) {
+      document.getElementById("cumul-chart").parentElement.innerHTML =
+        `<p class="text-muted" style="padding:40px;text-align:center">Sélectionnez au moins un parti avec des affaires enregistrées.</p>`;
+      return;
+    }
+
+    const datasets = selectedIds.map((pid, i) => {
+      const p = partiesMap[pid];
+      if (!p) return null;
+      const denom = useWikidata ? p.nb_politiciens_wikidata : p.nb_politiciens_crapu;
+      if (!denom) return null;
+      const color = PALETTE[i % PALETTE.length];
+      const cumulArr = cumulByParty[pid] || [];
+
+      return {
+        label: p.parti_nom_court || p.parti_nom.substring(0, 22),
+        data: years.map(y => {
+          let cum = 0;
+          for (const e of cumulArr) {
+            if (e.year <= y) cum = e.cum;
+            else break;
+          }
+          return cum > 0 ? (useWikidata ? cum / denom * 1000 : cum / denom * 100) : null;
+        }),
+        borderColor: color,
+        backgroundColor: color + "22",
+        pointRadius: 3,
+        tension: 0.3,
+        spanGaps: true,
+        fill: false,
+        borderWidth: 2,
+      };
+    }).filter(Boolean).filter(d => d.data.some(v => v != null));
+
+    if (!datasets.length) {
+      document.getElementById("cumul-chart").parentElement.innerHTML =
+        `<p class="text-muted" style="padding:40px;text-align:center">
+          Pas de données disponibles pour ces partis avec ce dénominateur.
+        </p>`;
+      return;
+    }
+
+    const yLabel = useWikidata
+      ? "Affaires cumulées pour 1 000 membres Wikidata"
+      : "Affaires cumulées pour 100 membres Crapulopédia";
+
+    _instances["cumul-chart"] = new Chart(ctx, {
+      type: "line",
+      data: { labels: years.map(String), datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top", labels: { font: { size: 11 }, boxWidth: 14 } },
+          tooltip: { mode: "index", intersect: false },
+        },
+        scales: {
+          x: {
+            title: { display: true, text: "Année" },
+            grid: { color: "#e5e7eb" },
+            ticks: { maxTicksLimit: 15 },
+          },
+          y: {
+            title: { display: true, text: yLabel },
+            beginAtZero: true,
+            grid: { color: "#e5e7eb" },
+          }
+        }
+      }
+    });
+  }
+
   /* ── Utilitaire HTML-escape ───────────────────────────── */
 
   function esc(s) {
@@ -714,6 +808,7 @@ const Charts = (() => {
     drawNormalizedBars,
     drawMetricsHeatmap,
     drawCumulative,
+    drawCumulativeFixed,
     drawBiplot,
     drawClustering,
     drawElbow,

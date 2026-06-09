@@ -37,21 +37,21 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel active" id="tab-taux">
   <div class="panel-header">
-    <h2>Taux normalisés par parti</h2>
+    <h2>Taux normalisés — affaires / politiciens</h2>
     <p class="panel-desc">
-      Les taux sont calculés en rapportant le nombre d'affaires au nombre de politiciens documentés
-      dans chaque source. Le <strong>Taux Wikidata</strong> est le plus rigoureux (dénominateur large,
-      indépendant de la base Crapulopédia). Le <strong>Taux Crapulopédia</strong> utilise les politiciens
-      distincts ayant au moins une affaire comme proxy. La couleur des barres reflète la position
-      sur le spectre gauche–droite.
+      Pour chaque parti : <strong>affaires cumulées jusqu'à l'année T ÷ total de politiciens documentés</strong>.
+      Le dénominateur <em>Wikidata</em> est le nombre total de politiciens français documentés pour ce parti
+      sur Wikidata (indépendant de Crapulopédia). Le dénominateur <em>Crapulopédia</em> est le nombre de
+      politiciens distincts ayant au moins une affaire — attention, c'est auto-référentiel.
+      Glissez le curseur pour voir comment les taux ont évolué dans le temps.
     </p>
-    <div class="metric-selector">
-      <label>Métrique affichée :</label>
-      <div class="toggle-group" id="toggle-metric">
-        <button class="toggle-btn active" data-val="taux_wikidata">Taux Wikidata (‰)</button>
-        <button class="toggle-btn" data-val="taux_crapu">Taux Crapulopédia (%)</button>
-        <button class="toggle-btn" data-val="taux_par_carriere">Taux / carrière-année</button>
-        <button class="toggle-btn" data-val="taux_recidive">Taux récidive</button>
+    <div class="slider-row">
+      <label>Jusqu'en</label>
+      <input type="range" id="year-slider" min="1965" max="2026" value="2026" step="1" />
+      <span id="year-slider-label" class="year-badge">2026</span>
+      <div class="toggle-group" id="toggle-denom" style="margin-left:16px">
+        <button class="toggle-btn active" data-val="wikidata">‰ Wikidata</button>
+        <button class="toggle-btn" data-val="crapu">% Crapulopédia</button>
       </div>
     </div>
     <div class="export-bar">
@@ -81,7 +81,7 @@
     <button class="btn-secondary" id="btn-toggle-heatmap">Afficher la heatmap complète des métriques</button>
   </div>
   <div id="heatmap-section" style="display:none">
-    <h3>Heatmap de toutes les métriques normalisées</h3>
+    <h3>Heatmap de toutes les métriques (valeurs finales)</h3>
     <p class="panel-desc small">
       Chaque cellule est colorée du blanc (valeur minimale) au rouge (valeur maximale) pour chaque colonne séparément.
     </p>
@@ -94,18 +94,17 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel" id="tab-evolution">
   <div class="panel-header">
-    <h2>Évolution temporelle — Taux cumulatifs normalisés</h2>
+    <h2>Évolution temporelle — taux cumulatif par parti</h2>
     <p class="panel-desc">
-      Pour chaque parti, le taux cumulatif représente : <em>nombre cumulé d'affaires jusqu'à l'année t</em>
-      divisé par le <em>nombre cumulatif de membres documentés dans Wikidata jusqu'à t</em> (×1 000).
-      Cette approche évite le biais de taille des partis et prend en compte leur durée d'existence.
-      <br>Le <strong>taux Crapulopédia</strong> utilise les politiciens de la base crapulopédia comme dénominateur alternatif.
+      Pour chaque parti : <strong>affaires cumulées jusqu'à l'année t ÷ total politiciens documentés (dénominateur fixe)</strong>.
+      Le dénominateur est constant (total Wikidata ou total Crapulopédia) — les lignes sont donc
+      monotonement croissantes et comparables entre partis de tailles différentes.
     </p>
     <div class="metric-selector">
-      <label>Taux à afficher :</label>
-      <div class="toggle-group" id="toggle-cumul-metric">
-        <button class="toggle-btn active" data-val="rate_wikidata">Wikidata (‰ membres)</button>
-        <button class="toggle-btn" data-val="rate_crapu">Crapulopédia (affaires/pol.)</button>
+      <label>Dénominateur :</label>
+      <div class="toggle-group" id="toggle-cumul-denom">
+        <button class="toggle-btn active" data-val="wikidata">‰ Wikidata (recommandé)</button>
+        <button class="toggle-btn" data-val="crapu">% Crapulopédia</button>
       </div>
     </div>
     <div class="export-bar">
@@ -115,8 +114,8 @@
   </div>
 
   <!-- Sélecteur de partis -->
-  <div class="party-selector" id="party-selector-cumul">
-    <label>Partis à afficher (sélectionner / désélectionner) :</label>
+  <div class="party-selector">
+    <label>Partis à afficher :</label>
     <div class="party-checkboxes" id="party-checkboxes"></div>
   </div>
 

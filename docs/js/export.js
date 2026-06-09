@@ -97,16 +97,20 @@ const Export = (() => {
           age_moyen_affaire: p.age_moyen_affaire,
         }));
 
-      case "evolution":
-        return Object.entries(AppState.cumulative?.partis || {}).flatMap(([pid, data]) =>
-          Object.entries(data.serie || {}).map(([annee, entry]) => ({
-            parti: data.parti_nom,
-            annee: parseInt(annee),
-            cum_affaires: entry.cum_affaires,
-            rate_wikidata: entry.rate_wikidata ?? "",
-            rate_crapu: entry.rate_crapu ?? "",
-          }))
-        );
+      case "evolution": {
+        const partiesMap = Object.fromEntries((AppState.parties || []).map(p => [p.parti_id, p]));
+        return Object.entries(AppState.cumulByParty || {}).flatMap(([pid, entries]) => {
+          const p = partiesMap[pid];
+          return entries.map(e => ({
+            parti: p?.parti_nom || pid,
+            parti_court: p?.parti_nom_court || "",
+            annee: e.year,
+            cum_affaires: e.cum,
+            nb_politiciens_wikidata: p?.nb_politiciens_wikidata ?? "",
+            taux_wikidata_cum: p?.nb_politiciens_wikidata ? (e.cum / p.nb_politiciens_wikidata * 1000).toFixed(3) : "",
+          }));
+        });
+      }
 
       case "tableau":
         return (AppState.tableFilteredAffaires || AppState.affairs || []).map(a => ({

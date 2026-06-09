@@ -9,8 +9,13 @@ const AppState = {
   // Données brutes
   affairs: [],
   parties: [],         // métriques normalisées (depuis parties.json)
-  cumulative: null,    // frise cumulative (depuis cumulative.json)
+  cumulative: null,    // frise cumulative (depuis cumulative.json, conservé pour export)
   stats: null,
+
+  // Cumul calculé depuis affairs.json : {parti_id: [{year, cum}]}
+  cumulByParty: {},
+  yearMin: 1965,
+  yearMax: 2026,
 
   // Analyses
   pcaVars: ["taux_wikidata", "taux_recidive", "taux_definitif", "gravite_moyenne", "position_spectre"],
@@ -19,9 +24,12 @@ const AppState = {
   clusterLabels: null,
   corrVars: ["taux_wikidata", "taux_crapu", "taux_par_carriere", "taux_recidive", "taux_definitif", "gravite_moyenne", "position_spectre"],
 
-  // Métriques affichées
-  currentMetric: "taux_wikidata",
-  cumulMetric: "rate_wikidata",
+  // Slider et dénominateur (onglet taux normalisés)
+  sliderYear: 2026,
+  denomMode: "wikidata",   // "wikidata" | "crapu"
+
+  // Évolution temporelle
+  cumulDenomMode: "wikidata",
   selectedCumulParties: [],
 
   // Régression
@@ -57,6 +65,13 @@ async function init() {
     AppState.cumulative = cumulative;
     AppState.stats = stats;
 
+    // Calcul des cumulatifs depuis affairs.json (dénominateur fixe = nb_politiciens_wikidata)
+    AppState.cumulByParty = buildCumulByParty(affairs);
+    const allAnnees = affairs.map(a => a.annee).filter(Boolean);
+    AppState.yearMin = Math.min(...allAnnees);
+    AppState.yearMax = Math.max(...allAnnees);
+    AppState.sliderYear = AppState.yearMax;
+
     // Date de génération
     const elDate = document.getElementById("date-generation");
     if (elDate && stats.meta?.date_generation) {
@@ -75,15 +90,12 @@ async function init() {
       p.taux_wikidata != null && p.position_spectre != null
     );
 
-    // Pré-sélection des top partis pour la frise cumulative
-    const topPids = Object.entries(cumulative.partis || {})
-      .sort((a, b) => {
-        const lastA = Object.values(a[1].serie || {}).slice(-1)[0];
-        const lastB = Object.values(b[1].serie || {}).slice(-1)[0];
-        return (lastB?.rate_wikidata ?? 0) - (lastA?.rate_wikidata ?? 0);
-      })
-      .slice(0, 7)
-      .map(e => e[0]);
+    // Pré-sélection des top partis pour la frise (par nb_affaires)
+    const topPids = [...parties]
+      .sort((a, b) => (b.nb_politiciens_wikidata ? 1 : 0) - (a.nb_politiciens_wikidata ? 1 : 0)
+        || b.nb_affaires - a.nb_affaires)
+      .slice(0, 8)
+      .map(p => p.parti_id);
     AppState.selectedCumulParties = topPids;
 
     // Remplir le filtre parti du tableau
@@ -91,7 +103,7 @@ async function init() {
 
     // Initialiser l'interface
     initNav();
-    initMetricSelector();
+    initSlider();
     initCumulativeSelector();
     initPCAVarCheckboxes();
     initRegressionSelectors();
@@ -140,15 +152,65 @@ function refreshActiveTab() {
   }
 }
 
-/* ── Sélecteur de métrique ──────────────────────────────── */
+/* ── Helpers cumulatifs ─────────────────────────────────── */
 
-function initMetricSelector() {
-  document.getElementById("toggle-metric")?.addEventListener("click", e => {
+/**
+ * Construit un index {parti_id: [{year, cum}]} depuis affairs.json.
+ * Permet de calculer le nombre d'affaires cumulées jusqu'à une année T.
+ */
+function buildCumulByParty(affairs) {
+  const byPartyYear = {};
+  affairs.forEach(a => {
+    if (!a.parti_id || !a.annee) return;
+    if (!byPartyYear[a.parti_id]) byPartyYear[a.parti_id] = {};
+    byPartyYear[a.parti_id][a.annee] = (byPartyYear[a.parti_id][a.annee] || 0) + 1;
+  });
+
+  const result = {};
+  Object.entries(byPartyYear).forEach(([pid, yearCounts]) => {
+    const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+    let cum = 0;
+    result[pid] = years.map(y => { cum += yearCounts[y]; return { year: y, cum }; });
+  });
+  return result;
+}
+
+/** Retourne le nombre cumulé d'affaires pour un parti jusqu'à l'année T. */
+function getCumAt(cumulArr, year) {
+  if (!cumulArr || !cumulArr.length) return 0;
+  let count = 0;
+  for (const e of cumulArr) {
+    if (e.year <= year) count = e.cum;
+    else break;
+  }
+  return count;
+}
+
+/* ── Slider & dénominateur ──────────────────────────────── */
+
+function initSlider() {
+  const slider = document.getElementById("year-slider");
+  const label = document.getElementById("year-slider-label");
+  if (!slider) return;
+
+  // Calibrer le slider sur la vraie plage des données
+  slider.min = AppState.yearMin;
+  slider.max = AppState.yearMax;
+  slider.value = AppState.yearMax;
+  if (label) label.textContent = AppState.yearMax;
+
+  slider.addEventListener("input", () => {
+    AppState.sliderYear = parseInt(slider.value);
+    if (label) label.textContent = AppState.sliderYear;
+    renderTaux();
+  });
+
+  document.getElementById("toggle-denom")?.addEventListener("click", e => {
     const btn = e.target.closest(".toggle-btn");
     if (!btn) return;
-    document.querySelectorAll("#toggle-metric .toggle-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("#toggle-denom .toggle-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    AppState.currentMetric = btn.dataset.val;
+    AppState.denomMode = btn.dataset.val;
     renderTaux();
   });
 }
@@ -156,32 +218,55 @@ function initMetricSelector() {
 /* ── Onglet 1 : Taux normalisés ─────────────────────────── */
 
 function renderTaux() {
-  const metric = AppState.currentMetric;
-  Charts.drawNormalizedBars(AppState.parties, metric);
-  renderKPIs();
+  const year = AppState.sliderYear;
+  const useWikidata = AppState.denomMode === "wikidata";
 
-  // Heatmap si visible
+  // Pour chaque parti, calculer le taux à l'année T
+  const partiesAtYear = AppState.parties.map(p => {
+    const cumAff = getCumAt(AppState.cumulByParty[p.parti_id], year);
+    let rate = null;
+    if (useWikidata && p.nb_politiciens_wikidata) {
+      rate = cumAff / p.nb_politiciens_wikidata * 1000;
+    } else if (!useWikidata && p.nb_politiciens_crapu > 0) {
+      rate = cumAff / p.nb_politiciens_crapu * 100;
+    }
+    return { ...p, cum_affaires_at_t: cumAff, rate_at_t: rate };
+  }).filter(p => p.cum_affaires_at_t > 0 && p.rate_at_t != null);
+
+  const metricLabel = useWikidata
+    ? `Affaires pour 1 000 politiciens Wikidata (jusqu'en ${year})`
+    : `Affaires pour 100 politiciens Crapulopédia (jusqu'en ${year})`;
+
+  Charts.drawNormalizedBars(partiesAtYear, "rate_at_t", metricLabel);
+  renderKPIs(year, partiesAtYear, useWikidata);
+
   if (document.getElementById("heatmap-section").style.display !== "none") {
     renderHeatmap();
   }
 }
 
-function renderKPIs() {
+function renderKPIs(year, partiesAtYear, useWikidata) {
   const el = document.getElementById("kpi-row");
   if (!el) return;
 
-  const p = AppState.parties;
-  const withWd = p.filter(x => x.taux_wikidata != null);
-  const nbTotal = AppState.stats?.meta?.nb_affaires_total ?? p.reduce((s, x) => s + x.nb_affaires, 0);
-  const nbDef = AppState.stats?.meta?.nb_affaires_definitif ?? p.reduce((s, x) => s + x.nb_affaires_definitif, 0);
-  const topWd = withWd.length ? [...withWd].sort((a, b) => b.taux_wikidata - a.taux_wikidata)[0] : null;
-  const topRec = [...p].sort((a, b) => b.taux_recidive - a.taux_recidive)[0];
+  year = year ?? AppState.yearMax;
+  partiesAtYear = partiesAtYear ?? AppState.parties.map(p => ({
+    ...p, cum_affaires_at_t: p.nb_affaires, rate_at_t: p.taux_wikidata
+  }));
+
+  const totalAff = partiesAtYear.reduce((s, p) => s + (p.cum_affaires_at_t || 0), 0);
+  const withWd = AppState.parties.filter(x => x.nb_politiciens_wikidata != null).length;
+  const topRate = partiesAtYear.length
+    ? [...partiesAtYear].sort((a, b) => (b.rate_at_t ?? 0) - (a.rate_at_t ?? 0))[0]
+    : null;
+  const topRec = [...AppState.parties].sort((a, b) => b.taux_recidive - a.taux_recidive)[0];
+  const suffix = useWikidata !== false ? "‰" : "%";
 
   el.innerHTML = [
-    { label: "Affaires totales", val: nbTotal, sub: `dont ${nbDef} définitives` },
-    { label: "Partis couverts", val: p.length, sub: `${withWd.length} avec données Wikidata` },
-    { label: "Taux Wikidata max", val: topWd ? topWd.taux_wikidata.toFixed(1) + "‰" : "N/A",
-      sub: topWd ? topWd.parti_nom_court || topWd.parti_nom : "" },
+    { label: `Affaires jusqu'en ${year}`, val: totalAff, sub: `sur ${AppState.stats?.meta?.nb_affaires_total ?? "?"} au total` },
+    { label: "Partis couverts", val: partiesAtYear.length, sub: `${withWd} avec données Wikidata` },
+    { label: "Taux le plus élevé", val: topRate ? (topRate.rate_at_t?.toFixed(1) ?? "N/A") + suffix : "N/A",
+      sub: topRate ? topRate.parti_nom_court || topRate.parti_nom : "" },
     { label: "Récidive la plus haute", val: topRec ? (topRec.taux_recidive * 100).toFixed(0) + "%" : "N/A",
       sub: topRec ? topRec.parti_nom_court || topRec.parti_nom : "" },
   ].map(({ label, val, sub }) => `
@@ -218,18 +303,21 @@ function initCumulativeSelector() {
   const container = document.getElementById("party-checkboxes");
   if (!container) return;
 
-  const partis = AppState.cumulative?.partis || {};
-  const sorted = Object.entries(partis).sort((a, b) => {
-    const va = Object.values(a[1].serie).slice(-1)[0]?.rate_wikidata ?? 0;
-    const vb = Object.values(b[1].serie).slice(-1)[0]?.rate_wikidata ?? 0;
-    return vb - va;
-  });
+  // Lister tous les partis avec au moins une affaire, triés par nb_affaires desc
+  const sorted = [...AppState.parties]
+    .filter(p => AppState.cumulByParty[p.parti_id])
+    .sort((a, b) => {
+      // Wikidata en premier, puis par taux final desc
+      const rA = a.taux_wikidata ?? (a.nb_affaires / (a.nb_politiciens_crapu || 1) * 100);
+      const rB = b.taux_wikidata ?? (b.nb_affaires / (b.nb_politiciens_crapu || 1) * 100);
+      return rB - rA;
+    });
 
-  container.innerHTML = sorted.map(([pid, data]) => {
-    const checked = AppState.selectedCumulParties.includes(pid);
+  container.innerHTML = sorted.map(p => {
+    const checked = AppState.selectedCumulParties.includes(p.parti_id);
     return `<label class="party-checkbox-label">
-      <input type="checkbox" value="${esc(pid)}" ${checked ? "checked" : ""} />
-      ${esc(data.parti_nom_court || data.parti_nom)}
+      <input type="checkbox" value="${esc(p.parti_id)}" ${checked ? "checked" : ""} />
+      ${esc(p.parti_nom_court || p.parti_nom.substring(0, 25))}
     </label>`;
   }).join("");
 
@@ -238,18 +326,28 @@ function initCumulativeSelector() {
     if (activeTab === "evolution") renderEvolution();
   });
 
-  document.getElementById("toggle-cumul-metric")?.addEventListener("click", e => {
+  document.getElementById("toggle-cumul-denom")?.addEventListener("click", e => {
     const btn = e.target.closest(".toggle-btn");
     if (!btn) return;
-    document.querySelectorAll("#toggle-cumul-metric .toggle-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("#toggle-cumul-denom .toggle-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    AppState.cumulMetric = btn.dataset.val;
+    AppState.cumulDenomMode = btn.dataset.val;
     if (activeTab === "evolution") renderEvolution();
   });
 }
 
 function renderEvolution() {
-  Charts.drawCumulative(AppState.cumulative, AppState.selectedCumulParties, AppState.cumulMetric);
+  const useWikidata = AppState.cumulDenomMode === "wikidata";
+  const partiesMap = Object.fromEntries(AppState.parties.map(p => [p.parti_id, p]));
+
+  Charts.drawCumulativeFixed(
+    AppState.cumulByParty,
+    partiesMap,
+    AppState.selectedCumulParties,
+    AppState.yearMin,
+    AppState.yearMax,
+    useWikidata
+  );
 }
 
 /* ── Onglet 3 : Analyses statistiques ───────────────────── */

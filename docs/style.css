@@ -112,6 +112,33 @@ header h1 .subtitle {
 }
 .toggle-btn:not(.active):hover { background: var(--accent-light); }
 
+/* ─── Slider année ────────────────────────────────────────── */
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.slider-row label {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.slider-row input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+  max-width: 300px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.year-badge {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent);
+  min-width: 44px;
+  text-align: center;
+}
+
 /* ─── Onglets ─────────────────────────────────────────────── */
 .tabs {
   display: flex;
