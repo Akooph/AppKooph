@@ -3,58 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crapulopédia — Visualisation des affaires politiques françaises</title>
+  <title>Crapulopédia — Affaires politiques françaises</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
+<!-- ── Header ──────────────────────────────────────────── -->
 <header>
   <div class="header-inner">
-    <h1>Crapulopédia <span class="subtitle">— Affaires politiques françaises normalisées</span></h1>
-    <p class="header-disclaimer">
-      Données : <a href="https://codeberg.org/raphael-jolivet/crapulopedia" target="_blank">Crapulopédia</a>,
-      <a href="https://data.assemblee-nationale.fr" target="_blank">Assemblée nationale</a>,
-      <a href="https://www.senat.fr" target="_blank">Sénat</a>,
-      <a href="https://www.wikidata.org" target="_blank">Wikidata</a>.
-      <a href="#" id="lien-methodologie" class="badge-lien">⚠ Lire la méthodologie</a>
-    </p>
+    <div class="header-brand">
+      <div class="dot"></div>
+      <h1>Crapulopédia</h1>
+      <span class="tagline">Affaires politiques françaises — données normalisées</span>
+    </div>
+    <div class="header-actions">
+      <a class="source-badge" href="https://codeberg.org/raphael-jolivet/crapulopedia" target="_blank">Crapulopédia</a>
+      <a class="source-badge" href="https://data.assemblee-nationale.fr" target="_blank">AN</a>
+      <a class="source-badge" href="https://www.senat.fr" target="_blank">Sénat</a>
+      <a class="source-badge" href="https://www.wikidata.org" target="_blank">Wikidata</a>
+      <span class="warn-badge" id="lien-methodologie">⚠ Méthodo</span>
+    </div>
   </div>
 </header>
 
-<!-- Navigation des onglets -->
+<!-- ── Navigation ──────────────────────────────────────── -->
 <nav class="tabs" role="tablist">
-  <button class="tab active" data-tab="taux" role="tab">Taux normalisés</button>
-  <button class="tab" data-tab="evolution" role="tab">Évolution temporelle</button>
-  <button class="tab" data-tab="statistiques" role="tab">Analyses statistiques</button>
-  <button class="tab" data-tab="tableau" role="tab">Tableau détaillé</button>
-  <button class="tab" data-tab="methodologie" role="tab">Méthodologie</button>
+  <button class="tab active" data-tab="taux" role="tab">Comparaison</button>
+  <button class="tab" data-tab="evolution" role="tab">Évolution</button>
+  <button class="tab" data-tab="statistiques" role="tab">Statistiques</button>
+  <button class="tab" data-tab="tableau" role="tab">Affaires</button>
+  <button class="tab" data-tab="methodologie" role="tab">À propos</button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- ONGLET 1 : Taux normalisés                             -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     ONGLET 1 : Comparaison par parti
+     ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel active" id="tab-taux">
-  <div class="panel-header">
-    <h2>Taux normalisés — affaires / politiciens</h2>
-    <p class="panel-desc">
-      Pour chaque parti : <strong>affaires cumulées jusqu'à l'année T ÷ total de politiciens documentés</strong>.
-      Le dénominateur <em>Wikidata</em> est le nombre total de politiciens français documentés pour ce parti
-      sur Wikidata (indépendant de Crapulopédia). Le dénominateur <em>Crapulopédia</em> est le nombre de
-      politiciens distincts ayant au moins une affaire — attention, c'est auto-référentiel.
-      Glissez le curseur pour voir comment les taux ont évolué dans le temps.
-    </p>
-    <div class="slider-row">
-      <label>Jusqu'en</label>
-      <input type="range" id="year-slider" min="1965" max="2026" value="2026" step="1" />
-      <span id="year-slider-label" class="year-badge">2026</span>
-      <div class="toggle-group" id="toggle-denom" style="margin-left:16px">
-        <button class="toggle-btn active" data-val="wikidata">‰ Wikidata</button>
-        <button class="toggle-btn" data-val="crapu">% Crapulopédia</button>
+
+  <!-- Contrôles -->
+  <div class="controls-bar">
+    <div class="controls-bar-section" style="flex:1;min-width:240px">
+      <div class="controls-label">Affaires cumulées jusqu'à l'année</div>
+      <div class="slider-wrapper">
+        <div class="year-display" id="year-slider-label">2026</div>
+        <div class="slider-track">
+          <input type="range" id="year-slider" min="1965" max="2026" value="2026" step="1" />
+          <div class="slider-limits">
+            <span id="year-min-label">1965</span>
+            <span id="year-max-label">2026</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="export-bar">
+    <div class="export-bar" style="align-self:flex-end">
       <button class="btn-export" data-chart="normalized-chart" data-fmt="png">↓ PNG</button>
       <button class="btn-export" data-target="taux" data-fmt="csv">↓ CSV</button>
       <button class="btn-export" data-target="taux" data-fmt="json">↓ JSON</button>
@@ -65,45 +68,45 @@
   <div class="kpi-row" id="kpi-row"></div>
 
   <!-- Graphique principal -->
-  <div class="chart-container chart-tall" id="normalized-container">
+  <div class="chart-surface tall" id="normalized-container">
     <canvas id="normalized-chart"></canvas>
   </div>
 
   <!-- Légende spectre -->
-  <div class="legende-spectre">
+  <div class="spectre-legend">
     <span>◀ Gauche</span>
     <div class="spectre-bar"></div>
     <span>Droite ▶</span>
+    <span style="margin-left:8px;font-style:italic">Couleur = position sur le spectre (source : Crapulopédia)</span>
   </div>
 
-  <!-- Heatmap des métriques -->
+  <!-- Heatmap (repliée par défaut) -->
   <div class="section-toggle">
-    <button class="btn-secondary" id="btn-toggle-heatmap">Afficher la heatmap complète des métriques</button>
+    <button class="btn-secondary" id="btn-toggle-heatmap">Afficher toutes les métriques (heatmap)</button>
   </div>
-  <div id="heatmap-section" style="display:none">
-    <h3>Heatmap de toutes les métriques (valeurs finales)</h3>
-    <p class="panel-desc small">
-      Chaque cellule est colorée du blanc (valeur minimale) au rouge (valeur maximale) pour chaque colonne séparément.
-    </p>
+  <div id="heatmap-section" style="display:none;margin-top:12px">
     <div class="heatmap-scroll" id="metrics-heatmap"></div>
   </div>
+
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- ONGLET 2 : Évolution temporelle                        -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     ONGLET 2 : Évolution temporelle
+     ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel" id="tab-evolution">
   <div class="panel-header">
-    <h2>Évolution temporelle — taux cumulatif par parti</h2>
+    <h2>Évolution dans le temps</h2>
     <p class="panel-desc">
-      Pour chaque parti : <strong>affaires cumulées jusqu'à l'année t ÷ total politiciens documentés (dénominateur fixe)</strong>.
-      Le dénominateur est constant (total Wikidata ou total Crapulopédia) — les lignes sont donc
-      monotonement croissantes et comparables entre partis de tailles différentes.
+      Pour chaque parti sélectionné : nombre d'affaires cumulées ÷ total politiciens Wikidata (dénominateur fixe).
+      Les lignes montent au fil du temps et permettent de comparer les trajectoires.
     </p>
+  </div>
+
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
     <div class="metric-selector">
-      <label>Dénominateur :</label>
+      <span class="controls-label">Dénominateur :</span>
       <div class="toggle-group" id="toggle-cumul-denom">
-        <button class="toggle-btn active" data-val="wikidata">‰ Wikidata (recommandé)</button>
+        <button class="toggle-btn active" data-val="wikidata">‰ Wikidata</button>
         <button class="toggle-btn" data-val="crapu">% Crapulopédia</button>
       </div>
     </div>
@@ -113,30 +116,25 @@
     </div>
   </div>
 
-  <!-- Sélecteur de partis -->
   <div class="party-selector">
     <label>Partis à afficher :</label>
     <div class="party-checkboxes" id="party-checkboxes"></div>
   </div>
 
-  <div class="chart-container chart-tall" id="cumul-container">
+  <div class="chart-surface tall">
     <canvas id="cumul-chart"></canvas>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- ONGLET 3 : Analyses statistiques                       -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     ONGLET 3 : Analyses statistiques
+     ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel" id="tab-statistiques">
   <div class="panel-header">
-    <h2>Analyses statistiques formelles</h2>
-    <p class="panel-desc">
-      Ces outils permettent d'explorer et de tester des hypothèses sur les données.
-      <strong>Rappel :</strong> corrélation ≠ causalité. Toutes les analyses sont exploratoires.
-    </p>
+    <h2>Analyses statistiques</h2>
+    <p class="panel-desc">Outils pour explorer et tester des hypothèses. Rappel : corrélation ≠ causalité.</p>
   </div>
 
-  <!-- Sous-navigation statistiques -->
   <div class="sub-tabs" id="sub-tabs-stat">
     <button class="sub-tab active" data-subtab="tests">Tests d'hypothèses</button>
     <button class="sub-tab" data-subtab="biplot">ACP / Biplot</button>
@@ -145,47 +143,35 @@
     <button class="sub-tab" data-subtab="regression">Régression</button>
   </div>
 
-  <!-- Tests d'hypothèses -->
+  <!-- Tests -->
   <div class="sub-panel active" id="subtab-tests">
     <div class="panel-header">
-      <h3>Tests d'hypothèses formels</h3>
-      <p>
-        Tests non-paramétriques sur les métriques normalisées des partis.
-        Ces tests ne supposent pas de distribution normale et sont adaptés aux petits échantillons.
-      </p>
+      <h3>Tests d'hypothèses non-paramétriques</h3>
       <div class="disclaimer-box">
-        ⚠ Le niveau de significativité retenu est α = 0,05. Pour des comparaisons multiples, le
-        seuil devrait être corrigé (Bonferroni). Ces tests opèrent sur ≤ 39 partis — les résultats
-        doivent être interprétés avec prudence.
+        ⚠ α = 0,05. Pour comparaisons multiples : correction Bonferroni recommandée. N ≤ 39 partis — interprétation prudente.
       </div>
     </div>
     <div id="hypothesis-tests-container"></div>
   </div>
 
-  <!-- ACP / Biplot -->
+  <!-- Biplot -->
   <div class="sub-panel" id="subtab-biplot">
     <div class="panel-header">
-      <h3>ACP — Biplot (scores + contributions)</h3>
-      <p>
-        Réduction dimensionnelle sur les métriques normalisées.
-        Les <strong>points</strong> représentent les partis projetés sur PC1/PC2.
-        Les <strong>flèches rouges</strong> montrent la contribution et le sens de chaque variable.
-      </p>
+      <h3>ACP — Biplot</h3>
       <div class="disclaimer-box">
-        ⚠ Les axes PC1 et PC2 sont des combinaisons linéaires des variables d'entrée.
-        Ils ne correspondent à aucune dimension politique préétablie.
+        ⚠ Les axes PC1/PC2 sont des combinaisons linéaires des variables. Aucune signification politique a priori.
       </div>
       <div class="filtre-inline">
-        <label>Variables d'entrée :</label>
+        <span>Variables :</span>
         <div class="var-checkboxes" id="pca-var-checkboxes"></div>
       </div>
-      <div class="export-bar">
+      <div class="export-bar" style="margin-top:8px">
         <button class="btn-export" data-chart="biplot-chart" data-fmt="png">↓ PNG</button>
         <button class="btn-export" data-target="acp" data-fmt="csv">↓ CSV</button>
       </div>
     </div>
     <div class="acp-layout">
-      <div class="chart-container chart-sq" id="biplot-container">
+      <div class="chart-surface sq">
         <canvas id="biplot-chart"></canvas>
       </div>
       <div class="acp-loadings">
@@ -202,28 +188,24 @@
   <!-- Clustering -->
   <div class="sub-panel" id="subtab-clustering">
     <div class="panel-header">
-      <h3>Classification automatique — k-means</h3>
-      <p>Regroupement des partis selon leurs similarités sur les métriques normalisées.</p>
-      <div class="disclaimer-box">
-        ⚠ Le clustering est mathématique. Les groupes n'ont pas de signification politique.
-        Les résultats varient avec k et entre les initialisations.
-      </div>
+      <h3>Classification k-means</h3>
+      <div class="disclaimer-box">⚠ Groupes mathématiques. Aucune signification politique.</div>
       <div class="filtre-inline">
-        <label>Nombre de groupes (k) :</label>
+        <label>Groupes (k) :</label>
         <input type="range" id="k-slider" min="2" max="6" value="3" />
         <span id="k-label">3</span>
       </div>
-      <div class="export-bar">
+      <div class="export-bar" style="margin-top:8px">
         <button class="btn-export" data-chart="cluster-chart" data-fmt="png">↓ PNG</button>
         <button class="btn-export" data-target="clustering" data-fmt="csv">↓ CSV</button>
       </div>
     </div>
     <div class="clustering-layout">
-      <div class="chart-container chart-sq" id="cluster-container">
+      <div class="chart-surface sq">
         <canvas id="cluster-chart"></canvas>
       </div>
-      <div class="chart-container" id="elbow-container">
-        <h4>Méthode du coude</h4>
+      <div class="chart-surface" style="min-height:220px">
+        <p class="controls-label" style="margin-bottom:10px">Méthode du coude</p>
         <canvas id="elbow-chart"></canvas>
       </div>
     </div>
@@ -234,20 +216,12 @@
   <div class="sub-panel" id="subtab-correlations">
     <div class="panel-header">
       <h3>Matrice de corrélations de Spearman</h3>
-      <p>
-        Corrélations non-paramétriques (rangs) entre les métriques normalisées.
-        Plus robuste que Pearson pour des distributions asymétriques ou des valeurs extrêmes.
-      </p>
-      <div class="disclaimer-box">
-        ⚠ Corrélation ≠ causalité. Taille d'échantillon : 39 partis maximum.
-      </div>
-      <div class="export-bar">
+      <div class="disclaimer-box">⚠ Corrélation ≠ causalité. N ≤ 39 partis.</div>
+      <div class="export-bar" style="margin-top:8px">
         <button class="btn-export" data-target="correlations" data-fmt="csv">↓ CSV</button>
       </div>
     </div>
-    <div id="corr-matrix-container">
-      <table id="corr-table" class="corr-table"></table>
-    </div>
+    <table id="corr-table" class="corr-table"></table>
     <div id="corr-legend" class="note-corr"></div>
   </div>
 
@@ -255,51 +229,45 @@
   <div class="sub-panel" id="subtab-regression">
     <div class="panel-header">
       <h3>Régression linéaire</h3>
-      <p>Modèle linéaire simple entre deux métriques sélectionnées ci-dessous.</p>
       <div class="filtre-inline">
-        <label>Variable X (explicative) :</label>
+        <label>X (explicative) :</label>
         <select id="reg-x-var"></select>
-        <label>Variable Y (à expliquer) :</label>
+        <label>Y (à expliquer) :</label>
         <select id="reg-y-var"></select>
         <button class="btn-secondary" id="btn-run-reg">Calculer</button>
       </div>
-      <div class="disclaimer-box">
-        ⚠ Ce modèle est exploratoire. R² élevé ne garantit pas une interprétation causale valide.
-        Effectifs faibles par parti.
-      </div>
-      <div class="export-bar">
+      <div class="disclaimer-box">⚠ Modèle exploratoire. R² élevé ≠ causalité valide. Effectifs faibles.</div>
+      <div class="export-bar" style="margin-top:8px">
         <button class="btn-export" data-chart="regression-chart" data-fmt="png">↓ PNG</button>
         <button class="btn-export" data-target="regression" data-fmt="csv">↓ CSV</button>
       </div>
     </div>
-    <div class="chart-container" id="regression-container">
+    <div class="chart-surface" style="min-height:400px">
       <canvas id="regression-chart"></canvas>
     </div>
     <div id="regression-stats" class="regression-stats"></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- ONGLET 4 : Tableau détaillé                            -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     ONGLET 4 : Tableau des affaires
+     ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel" id="tab-tableau">
   <div class="panel-header">
-    <h2>Tableau détaillé des affaires</h2>
-    <div class="tableau-filtres">
-      <input type="text" id="search-input" placeholder="Rechercher un politicien, parti, affaire…" />
-      <select id="filter-parti">
-        <option value="">Tous les partis</option>
-      </select>
-      <select id="filter-statut">
-        <option value="">Tous les verdicts</option>
-        <option value="definitif">Définitif</option>
-        <option value="appel">En appel</option>
-        <option value="cassation">Cassation</option>
-        <option value="inconnu">Inconnu</option>
-      </select>
-      <label>Gravité min : <span id="gravite-label">0</span></label>
-      <input type="range" id="filter-gravite" min="0" max="300" value="0" step="5" />
-    </div>
+    <h2>Tableau des affaires</h2>
+  </div>
+  <div class="tableau-filtres">
+    <input type="text" id="search-input" placeholder="Rechercher un politicien, parti, affaire…" />
+    <select id="filter-parti"><option value="">Tous les partis</option></select>
+    <select id="filter-statut">
+      <option value="">Tous les verdicts</option>
+      <option value="definitif">Définitif</option>
+      <option value="appel">En appel</option>
+      <option value="cassation">Cassation</option>
+      <option value="inconnu">Inconnu</option>
+    </select>
+    <label>Gravité min : <span id="gravite-label">0</span></label>
+    <input type="range" id="filter-gravite" min="0" max="300" value="0" step="5" />
     <div class="export-bar">
       <button class="btn-export" data-target="tableau" data-fmt="csv">↓ CSV</button>
       <button class="btn-export" data-target="tableau" data-fmt="json">↓ JSON</button>
@@ -327,139 +295,89 @@
   <p class="table-count" id="table-count"></p>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- ONGLET 5 : Méthodologie                               -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════
+     ONGLET 5 : Méthodologie
+     ═══════════════════════════════════════════════════════ -->
 <section class="tab-panel" id="tab-methodologie">
   <div class="methodologie-content">
     <h2>Méthodologie, sources et biais</h2>
 
     <div class="disclaimer-box large">
-      <strong>⚠ Avertissement général</strong><br>
-      Ce site est un outil d'exploration de données ouvertes. Il n'exprime aucune opinion politique
-      et ne prétend pas à l'exhaustivité. Les données proviennent de sources publiques et peuvent
-      comporter des erreurs ou des omissions. Tout résultat doit être interprété avec précaution
-      et dans son contexte statistique.
+      <strong>⚠ Avertissement</strong> — Ce site est un outil d'exploration de données ouvertes, sans affiliation politique.
+      Il ne prétend pas à l'exhaustivité. Toute interprétation doit tenir compte des biais documentés ci-dessous.
     </div>
 
     <h3>Sources de données</h3>
     <table class="sources-table">
-      <thead><tr><th>Source</th><th>Contenu</th><th>Licence</th><th>URL</th></tr></thead>
+      <thead><tr><th>Source</th><th>Contenu</th><th>Licence</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Crapulopédia</td>
-          <td>Affaires, condamnations, scores de gravité, partis</td>
-          <td>À vérifier auprès de l'auteur</td>
-          <td><a href="https://codeberg.org/raphael-jolivet/crapulopedia" target="_blank">codeberg.org</a></td>
-        </tr>
-        <tr>
-          <td>Assemblée nationale</td>
-          <td>Députés actifs, groupes parlementaires</td>
-          <td>Licence Ouverte 2.0</td>
-          <td><a href="https://data.assemblee-nationale.fr" target="_blank">data.assemblee-nationale.fr</a></td>
-        </tr>
-        <tr>
-          <td>Sénat</td>
-          <td>Sénateurs en exercice, groupes politiques</td>
-          <td>Licence Ouverte 2.0</td>
-          <td><a href="https://www.senat.fr" target="_blank">senat.fr</a></td>
-        </tr>
-        <tr>
-          <td>Wikidata SPARQL</td>
-          <td>Dénominateur historique : politiciens français par parti et par année d'adhésion</td>
-          <td>CC0</td>
-          <td><a href="https://query.wikidata.org" target="_blank">query.wikidata.org</a></td>
-        </tr>
+        <tr><td>Crapulopédia</td><td>Affaires, condamnations, scores de gravité, partis</td><td>Voir auteur (R. Jolivet)</td></tr>
+        <tr><td>Assemblée nationale</td><td>Députés actifs, groupes</td><td>Licence Ouverte 2.0</td></tr>
+        <tr><td>Sénat</td><td>Sénateurs, groupes politiques</td><td>Licence Ouverte 2.0</td></tr>
+        <tr><td>Wikidata SPARQL</td><td>Total politiciens par parti (dénominateur)</td><td>CC0</td></tr>
       </tbody>
     </table>
 
-    <h3>Métriques normalisées</h3>
+    <h3>Lecture du graphique de comparaison</h3>
+    <p>
+      Chaque barre représente <strong>la proportion de politiciens Wikidata du parti qui ont été impliqués dans au moins une affaire</strong>,
+      cumulativement jusqu'à l'année sélectionnée avec le curseur.
+      Le label à droite de la barre indique le nombre brut (<em>X mis en cause / Y total documentés</em>).
+    </p>
+    <p>
+      Le dénominateur est le nombre total de politiciens français documentés dans Wikidata pour ce parti —
+      indépendant de Crapulopédia. Ce n'est pas le nombre de membres au sens large, mais les personnes
+      ayant exercé une fonction politique documentée.
+    </p>
+
+    <h3>Métriques complémentaires</h3>
     <table class="sources-table">
-      <thead><tr><th>Métrique</th><th>Formule</th><th>Interprétation</th></tr></thead>
+      <thead><tr><th>Métrique</th><th>Formule</th><th>Attention</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Taux Wikidata</td>
-          <td>nb_affaires / nb_politiciens_wikidata × 1 000</td>
-          <td>Affaires pour 1 000 politiciens français documentés dans Wikidata (source externe, indépendante)</td>
-        </tr>
-        <tr>
-          <td>Taux Crapulopédia</td>
-          <td>nb_affaires / nb_politiciens_crapu × 100</td>
-          <td>Affaires pour 100 politiciens distincts dans la base (biais : dénominateur auto-référentiel)</td>
-        </tr>
-        <tr>
-          <td>Taux par carrière-année</td>
-          <td>nb_affaires / Σ(âge_affaire − 30) × 100</td>
-          <td>Affaires pour 100 années-carrière cumulées (proxy : carrière commençant à 30 ans)</td>
-        </tr>
-        <tr>
-          <td>Taux de récidive</td>
-          <td>nb_pol_avec_2+_affaires / nb_pol_distincts</td>
-          <td>Proportion de politiciens ayant ≥ 2 affaires dans le parti</td>
-        </tr>
-        <tr>
-          <td>Part définitives</td>
-          <td>nb_definitif / nb_total</td>
-          <td>Proportion d'affaires ayant abouti à une condamnation définitive</td>
-        </tr>
-        <tr>
-          <td>Frise temporelle cumulative</td>
-          <td>cum_affaires(t) / cum_membres_wikidata(t) × 1 000</td>
-          <td>Taux cumulatif normalisé à chaque année — comparable entre partis de tailles et âges différents</td>
-        </tr>
+        <tr><td>Taux Wikidata</td><td>nb_affaires / nb_wikidata × 1 000</td><td>Affaires ≠ politiciens (récidive possible)</td></tr>
+        <tr><td>Taux Crapulopédia</td><td>nb_affaires / nb_crapu × 100</td><td>Auto-référentiel — dénominateur biaisé</td></tr>
+        <tr><td>Taux récidive</td><td>nb_pol_2+_affaires / nb_pol_distincts</td><td>Dépend de la couverture de la base</td></tr>
+        <tr><td>Part définitives</td><td>nb_définitif / nb_total</td><td>Les affaires récentes sont souvent encore en cours</td></tr>
+        <tr><td>Taux par carrière-année</td><td>nb_affaires / Σ(âge−30) × 100</td><td>Proxy — suppose début de carrière à 30 ans</td></tr>
       </tbody>
     </table>
 
-    <h3>Biais connus et limites</h3>
+    <h3>Biais connus</h3>
     <ol class="bias-list">
-      <li><strong>Crapulopédia n'est pas exhaustive.</strong> Elle recense les affaires notables documentées
-        sur Wikipédia. Les infractions non médiatisées ou non documentées sont absentes.</li>
+      <li><strong>Crapulopédia n'est pas exhaustive.</strong> Elle recense les affaires notables documentées sur Wikipédia. Les infractions non médiatisées sont absentes.</li>
       <li><strong>Biais de notoriété.</strong> Les politiciens plus connus ont plus de chances d'être documentés.</li>
       <li><strong>Biais temporel.</strong> Les affaires récentes sont mieux couvertes que les affaires anciennes.</li>
-      <li><strong>Dénominateur Wikidata incomplet.</strong> Wikidata ne documente pas tous les politiciens —
-        les données des petits partis ou des périodes anciennes sont lacunaires.</li>
-      <li><strong>Matching imparfait.</strong> La correspondance entre Crapulopédia (Wikidata IDs) et
-        les données officielles AN/Sénat (noms) se fait par normalisation de noms — des erreurs sont possibles.</li>
-      <li><strong>Groupes parlementaires ≠ partis.</strong> Les groupes à l'AN regroupent parfois
-        plusieurs partis distincts.</li>
-      <li><strong>ACP et clustering sans signification politique.</strong> Ces méthodes créent des groupes
-        mathématiques sans intention éditoriale.</li>
-      <li><strong>Petits effectifs.</strong> Pour les partis avec < 5 affaires, les statistiques sont
-        très sensibles aux valeurs individuelles.</li>
-      <li><strong>Proxy d'âge de début de carrière.</strong> La correction par carrière-année suppose
-        un début de carrière à 30 ans — hypothèse simplificatrice.</li>
+      <li><strong>Dénominateur Wikidata incomplet.</strong> Wikidata ne documente pas tous les politiciens — les petits partis et les périodes anciennes sont lacunaires.</li>
+      <li><strong>Matching imparfait.</strong> Correspondance Crapulopédia ↔ AN/Sénat par normalisation de noms — des erreurs sont possibles.</li>
+      <li><strong>Groupes ≠ partis.</strong> Les groupes parlementaires regroupent parfois plusieurs partis.</li>
+      <li><strong>ACP et clustering.</strong> Groupes mathématiques, aucune signification politique.</li>
+      <li><strong>Petits effectifs.</strong> Partis avec < 5 affaires : statistiques peu fiables.</li>
     </ol>
 
-    <h3>Code source et reproductibilité</h3>
+    <h3>Reproductibilité</h3>
     <p>
       Pipeline Python (<code>data/scripts/process.py</code>) et code JavaScript disponibles sur
       <a href="https://github.com/Akooph/AppKooph" target="_blank">GitHub</a>.
-      Toutes les transformations sont auditables et reproductibles.
     </p>
 
     <div class="meta-info" id="meta-info">
-      <em>Données générées le : <span id="date-generation">chargement…</span></em>
+      <em>Données générées le <span id="date-generation">chargement…</span></em>
     </div>
   </div>
 </section>
 
-<!-- Modal méthodologie (depuis le header) -->
+<!-- ── Modal méthodologie ───────────────────────────────── -->
 <div class="modal-overlay" id="modal-overlay" hidden>
   <div class="modal">
     <button class="modal-close" id="modal-close">✕</button>
-    <p>Voir l'onglet <strong>Méthodologie</strong> pour le détail complet des sources, biais et limites.</p>
+    <p>Voir l'onglet <strong>À propos</strong> pour les sources, biais et méthodes.</p>
     <button class="btn-primary" id="btn-voir-methodo">Aller à la méthodologie</button>
   </div>
 </div>
 
 <footer>
-  <p>
-    Données : <a href="https://codeberg.org/raphael-jolivet/crapulopedia" target="_blank">Crapulopédia</a> ·
-    <a href="https://data.assemblee-nationale.fr" target="_blank">Assemblée nationale</a> ·
-    <a href="https://www.senat.fr" target="_blank">Sénat</a> ·
-    <a href="https://www.wikidata.org" target="_blank">Wikidata</a>
-    — Aucune affiliation politique. Projet open source.
-  </p>
+  Données : Crapulopédia · Assemblée nationale · Sénat · Wikidata —
+  Aucune affiliation politique · <a href="https://github.com/Akooph/AppKooph" target="_blank">Code source</a>
 </footer>
 
 <script src="js/stats.js"></script>

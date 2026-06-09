@@ -52,6 +52,130 @@ const Charts = (() => {
    * 1. Taux normalisés — barres horizontales comparées
    * ══════════════════════════════════════════════════════════ */
 
+  /* ══════════════════════════════════════════════════════════
+   * 1b. Barres proportionnelles — X politiciens mis en cause / Y total
+   *     parties doit avoir : proportion_at_t, cum_pols_at_t, nb_politiciens_wikidata
+   * ══════════════════════════════════════════════════════════ */
+
+  function drawProportionalBars(parties, yearLabel = "") {
+    destroyChart("normalized-chart");
+    const canvas = document.getElementById("normalized-chart");
+    const ctx = canvas?.getContext("2d");
+    if (!ctx) return;
+
+    const data = [...parties]
+      .filter(p => p.proportion_at_t != null && p.proportion_at_t > 0 && p.nb_politiciens_wikidata > 0)
+      .sort((a, b) => b.proportion_at_t - a.proportion_at_t);
+
+    if (!data.length) {
+      if (canvas) canvas.parentElement.innerHTML =
+        `<p class="text-muted small" style="padding:40px;text-align:center">
+          Aucune donnée Wikidata disponible pour cette année. Avancez le curseur.
+        </p>`;
+      return;
+    }
+
+    const labels = data.map(p => p.parti_nom_court || p.parti_nom.substring(0, 26));
+    const colors = data.map(p => spectreColor(p.position_spectre));
+
+    // Plugin : dessine "X / Y" à droite de chaque barre
+    const barLabelPlugin = {
+      id: "propBarLabels",
+      afterDraw(chart) {
+        const { ctx: c, scales: { x, y } } = chart;
+        c.save();
+        c.font = "11px system-ui, sans-serif";
+        c.textBaseline = "middle";
+        data.forEach((d, i) => {
+          const yPos = y.getPixelForValue(i);
+          const propCapped = Math.min(d.proportion_at_t, 1);
+          const xRight = x.getPixelForValue(propCapped) + 7;
+          const pct = (d.proportion_at_t * 100).toFixed(1);
+          const txt = `${d.cum_pols_at_t} / ${d.nb_politiciens_wikidata} (${pct}%)`;
+          c.fillStyle = "#80807a";
+          c.fillText(txt, xRight, yPos);
+        });
+        c.restore();
+      }
+    };
+
+    _instances["normalized-chart"] = new Chart(ctx, {
+      type: "bar",
+      plugins: [barLabelPlugin],
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Mis en cause",
+            data: data.map(d => Math.min(d.proportion_at_t, 1)),
+            backgroundColor: colors.map(c => c + "dd"),
+            borderColor: colors,
+            borderWidth: 1,
+            borderSkipped: false,
+          },
+          {
+            label: "Reste",
+            data: data.map(d => Math.max(0, 1 - d.proportion_at_t)),
+            backgroundColor: "rgba(0,0,0,0.05)",
+            borderColor: "rgba(0,0,0,0.07)",
+            borderWidth: 1,
+            borderSkipped: false,
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { right: 170 } },
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              font: { size: 11 },
+              boxWidth: 12,
+              filter: item => item.text === "Mis en cause",
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label(ctx) {
+                if (ctx.datasetIndex !== 0) return null;
+                const d = data[ctx.dataIndex];
+                const pct = (d.proportion_at_t * 100).toFixed(1);
+                return [
+                  `${d.cum_pols_at_t} politiciens mis en cause / ${d.nb_politiciens_wikidata} total`,
+                  `Proportion : ${pct}%`,
+                  `Affaires enregistrées : ${d.cum_affaires_at_t}`,
+                  `Spectre : ${d.position_spectre?.toFixed(2) ?? "N/A"}`,
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            min: 0,
+            max: 1,
+            ticks: { callback: v => `${(v * 100).toFixed(0)}%`, maxTicksLimit: 8, font: { size: 11 } },
+            title: {
+              display: !!yearLabel,
+              text: yearLabel,
+              font: { size: 11 },
+              color: "#80807a",
+            },
+            grid: { color: "#f0f0ea" },
+          },
+          y: {
+            stacked: true,
+            ticks: { font: { size: 11 } },
+          }
+        }
+      }
+    });
+  }
+
   function drawNormalizedBars(parties, metric = "taux_wikidata", metricLabel = null) {
     destroyChart("normalized-chart");
     const ctx = document.getElementById("normalized-chart")?.getContext("2d");
@@ -805,6 +929,7 @@ const Charts = (() => {
   /* ── API publique ──────────────────────────────────────── */
 
   return {
+    drawProportionalBars,
     drawNormalizedBars,
     drawMetricsHeatmap,
     drawCumulative,

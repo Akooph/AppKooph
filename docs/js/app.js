@@ -163,27 +163,34 @@ function buildCumulByParty(affairs) {
   affairs.forEach(a => {
     if (!a.parti_id || !a.annee) return;
     if (!byPartyYear[a.parti_id]) byPartyYear[a.parti_id] = {};
-    byPartyYear[a.parti_id][a.annee] = (byPartyYear[a.parti_id][a.annee] || 0) + 1;
+    if (!byPartyYear[a.parti_id][a.annee]) byPartyYear[a.parti_id][a.annee] = { count: 0, pols: new Set() };
+    byPartyYear[a.parti_id][a.annee].count++;
+    if (a.politicien_nom) byPartyYear[a.parti_id][a.annee].pols.add(a.politicien_nom);
   });
 
   const result = {};
-  Object.entries(byPartyYear).forEach(([pid, yearCounts]) => {
-    const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
-    let cum = 0;
-    result[pid] = years.map(y => { cum += yearCounts[y]; return { year: y, cum }; });
+  Object.entries(byPartyYear).forEach(([pid, yearData]) => {
+    const years = Object.keys(yearData).map(Number).sort((a, b) => a - b);
+    let cumAffaires = 0;
+    const seenPols = new Set();
+    result[pid] = years.map(y => {
+      cumAffaires += yearData[y].count;
+      yearData[y].pols.forEach(p => seenPols.add(p));
+      return { year: y, cum: cumAffaires, cumPols: seenPols.size };
+    });
   });
   return result;
 }
 
-/** Retourne le nombre cumulé d'affaires pour un parti jusqu'à l'année T. */
+/** Retourne {cum, cumPols} pour un parti jusqu'à l'année T. */
 function getCumAt(cumulArr, year) {
-  if (!cumulArr || !cumulArr.length) return 0;
-  let count = 0;
+  if (!cumulArr || !cumulArr.length) return { cum: 0, cumPols: 0 };
+  let result = { cum: 0, cumPols: 0 };
   for (const e of cumulArr) {
-    if (e.year <= year) count = e.cum;
+    if (e.year <= year) result = { cum: e.cum, cumPols: e.cumPols };
     else break;
   }
-  return count;
+  return result;
 }
 
 /* ── Slider & dénominateur ──────────────────────────────── */
@@ -193,24 +200,19 @@ function initSlider() {
   const label = document.getElementById("year-slider-label");
   if (!slider) return;
 
-  // Calibrer le slider sur la vraie plage des données
   slider.min = AppState.yearMin;
   slider.max = AppState.yearMax;
   slider.value = AppState.yearMax;
   if (label) label.textContent = AppState.yearMax;
 
+  const minLbl = document.getElementById("year-min-label");
+  const maxLbl = document.getElementById("year-max-label");
+  if (minLbl) minLbl.textContent = AppState.yearMin;
+  if (maxLbl) maxLbl.textContent = AppState.yearMax;
+
   slider.addEventListener("input", () => {
     AppState.sliderYear = parseInt(slider.value);
     if (label) label.textContent = AppState.sliderYear;
-    renderTaux();
-  });
-
-  document.getElementById("toggle-denom")?.addEventListener("click", e => {
-    const btn = e.target.closest(".toggle-btn");
-    if (!btn) return;
-    document.querySelectorAll("#toggle-denom .toggle-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    AppState.denomMode = btn.dataset.val;
     renderTaux();
   });
 }
@@ -219,61 +221,69 @@ function initSlider() {
 
 function renderTaux() {
   const year = AppState.sliderYear;
-  const useWikidata = AppState.denomMode === "wikidata";
 
-  // Pour chaque parti, calculer le taux à l'année T
   const partiesAtYear = AppState.parties.map(p => {
-    const cumAff = getCumAt(AppState.cumulByParty[p.parti_id], year);
-    let rate = null;
-    if (useWikidata && p.nb_politiciens_wikidata) {
-      rate = cumAff / p.nb_politiciens_wikidata * 1000;
-    } else if (!useWikidata && p.nb_politiciens_crapu > 0) {
-      rate = cumAff / p.nb_politiciens_crapu * 100;
-    }
-    return { ...p, cum_affaires_at_t: cumAff, rate_at_t: rate };
-  }).filter(p => p.cum_affaires_at_t > 0 && p.rate_at_t != null);
+    const { cum, cumPols } = getCumAt(AppState.cumulByParty[p.parti_id], year);
+    const proportion = (p.nb_politiciens_wikidata > 0) ? cumPols / p.nb_politiciens_wikidata : null;
+    return { ...p, cum_affaires_at_t: cum, cum_pols_at_t: cumPols, proportion_at_t: proportion };
+  }).filter(p => p.cum_affaires_at_t > 0 && p.proportion_at_t != null);
 
-  const metricLabel = useWikidata
-    ? `Affaires pour 1 000 politiciens Wikidata (jusqu'en ${year})`
-    : `Affaires pour 100 politiciens Crapulopédia (jusqu'en ${year})`;
+  const yearLabel = `Part de politiciens Wikidata mis en cause — jusqu'en ${year}`;
+  Charts.drawProportionalBars(partiesAtYear, yearLabel);
+  renderKPIs(year, partiesAtYear);
 
-  Charts.drawNormalizedBars(partiesAtYear, "rate_at_t", metricLabel);
-  renderKPIs(year, partiesAtYear, useWikidata);
-
-  if (document.getElementById("heatmap-section").style.display !== "none") {
+  if (document.getElementById("heatmap-section")?.style.display !== "none") {
     renderHeatmap();
   }
 }
 
-function renderKPIs(year, partiesAtYear, useWikidata) {
+function renderKPIs(year, partiesAtYear) {
   const el = document.getElementById("kpi-row");
   if (!el) return;
 
   year = year ?? AppState.yearMax;
-  partiesAtYear = partiesAtYear ?? AppState.parties.map(p => ({
-    ...p, cum_affaires_at_t: p.nb_affaires, rate_at_t: p.taux_wikidata
-  }));
+  partiesAtYear = partiesAtYear ?? [];
 
   const totalAff = partiesAtYear.reduce((s, p) => s + (p.cum_affaires_at_t || 0), 0);
-  const withWd = AppState.parties.filter(x => x.nb_politiciens_wikidata != null).length;
-  const topRate = partiesAtYear.length
-    ? [...partiesAtYear].sort((a, b) => (b.rate_at_t ?? 0) - (a.rate_at_t ?? 0))[0]
+  const totalPols = partiesAtYear.reduce((s, p) => s + (p.cum_pols_at_t || 0), 0);
+  const withWd = AppState.parties.filter(x => x.nb_politiciens_wikidata > 0).length;
+  const topProp = partiesAtYear.length
+    ? [...partiesAtYear].sort((a, b) => (b.proportion_at_t ?? 0) - (a.proportion_at_t ?? 0))[0]
     : null;
-  const topRec = [...AppState.parties].sort((a, b) => b.taux_recidive - a.taux_recidive)[0];
-  const suffix = useWikidata !== false ? "‰" : "%";
+  const topRec = AppState.parties.length
+    ? [...AppState.parties].sort((a, b) => (b.taux_recidive ?? 0) - (a.taux_recidive ?? 0))[0]
+    : null;
 
   el.innerHTML = [
-    { label: `Affaires jusqu'en ${year}`, val: totalAff, sub: `sur ${AppState.stats?.meta?.nb_affaires_total ?? "?"} au total` },
-    { label: "Partis couverts", val: partiesAtYear.length, sub: `${withWd} avec données Wikidata` },
-    { label: "Taux le plus élevé", val: topRate ? (topRate.rate_at_t?.toFixed(1) ?? "N/A") + suffix : "N/A",
-      sub: topRate ? topRate.parti_nom_court || topRate.parti_nom : "" },
-    { label: "Récidive la plus haute", val: topRec ? (topRec.taux_recidive * 100).toFixed(0) + "%" : "N/A",
-      sub: topRec ? topRec.parti_nom_court || topRec.parti_nom : "" },
-  ].map(({ label, val, sub }) => `
-    <div class="kpi-card">
+    {
+      label: "Affaires cumulées",
+      val: totalAff,
+      sub: `jusqu'en ${year}`,
+      accent: false,
+    },
+    {
+      label: "Politiciens mis en cause",
+      val: totalPols,
+      sub: `dans ${partiesAtYear.length} partis avec données Wikidata`,
+      accent: true,
+    },
+    {
+      label: "Proportion max",
+      val: topProp ? (topProp.proportion_at_t * 100).toFixed(1) + "%" : "—",
+      sub: topProp ? (topProp.parti_nom_court || topProp.parti_nom) : "",
+      accent: false,
+    },
+    {
+      label: "Récidive max",
+      val: topRec?.taux_recidive != null ? (topRec.taux_recidive * 100).toFixed(0) + "%" : "—",
+      sub: topRec ? (topRec.parti_nom_court || topRec.parti_nom) : "",
+      accent: false,
+    },
+  ].map(({ label, val, sub, accent }) => `
+    <div class="kpi-card${accent ? " accent" : ""}">
       <div class="kpi-value">${val}</div>
       <div class="kpi-label">${label}</div>
-      <div class="kpi-sub">${sub}</div>
+      <div class="kpi-sub">${esc(sub)}</div>
     </div>
   `).join("");
 }
